@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Solar",
+        "repositoryURL": "https://github.com/ceeK/Solar.git",
+        "state": {
+          "branch": null,
+          "revision": "eacab01aa732612d97c723ceb77c748aaba54c82",
+          "version": "2.2.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
