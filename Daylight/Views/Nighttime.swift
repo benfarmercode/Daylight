@@ -32,6 +32,9 @@ struct Nighttime: View {
         .onAppear{
             viewModel.setup(locationData: LocationManager.shared.locationData)
         }
+        .onDisappear(){
+            timer.upstream.connect().cancel()
+        }
         .onReceive(timer) {_ in
             viewModel.updateTimeData()
         }
