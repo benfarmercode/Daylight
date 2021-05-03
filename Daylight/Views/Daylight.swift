@@ -33,6 +33,7 @@ struct Daylight: View {
             viewModel.setup(locationData: LocationManager.shared.locationData)
         }
         .onReceive(timer) {_ in
+            viewModel.updateTimeData()
         }
     }
     

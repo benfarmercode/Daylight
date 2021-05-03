@@ -17,19 +17,18 @@ extension Daylight{
         let calendar = Calendar.current
         
         func setup(locationData: LocationData){
-            
-            //CHANGE HOUR SHIFT TO SIMULATE DIFFERENT TIMES
-            //SET HOUR SHIFT TO 0 TO USE CURRENT TIME
-            let hourShift = -0
-            let timeShift = Double(60*60*hourShift)
-            
-            self.timeData.currentTime = Date().addingTimeInterval(timeShift)
-            (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+            updateTimeData()
             self.locationData = locationData
-
             logger.info("Daylight CurrentTime: \(self.timeData.currentTime)")
             logger.info("Daylight Sunset: \(self.timeData.sunset)")
             logger.info("Daylight Sunrise: \(self.timeData.sunrise)")
+        }
+        
+        func updateTimeData(){
+            let timeShift = Double(60 * 60 * globalHourShift)
+            
+            self.timeData.currentTime = Date().addingTimeInterval(timeShift)
+            (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
         }
     
         func getSunriseString() -> String {
@@ -41,7 +40,7 @@ extension Daylight{
         }
     
         func getCurrentTimeString() -> String{
-            return getTimeStringFromDate(Date())
+            return getTimeStringFromDate(self.timeData.currentTime)
         }
     
         func getTimeStringFromDate(_ dateObject: Date) -> String{
@@ -61,9 +60,7 @@ extension Daylight{
         }
     
         func getElapsedDaylightInterval() -> Int{
-            let currentTime = Date()
-//            let currentTime = self.timeData.currentTime
-            var elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: currentTime)
+            var elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: self.timeData.currentTime)
             logger.info("Elapsed Daylight = \(elapsedTime)")
             
             // replace sunrise/sunset with previous UTC day sunset if elapsedtime is negative
@@ -71,7 +68,7 @@ extension Daylight{
             if elapsedTime < 0 {
                 logger.notice("Elapsed daylight negative!")
                 (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(-60*60*24), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
-                elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: currentTime)
+                elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: self.timeData.currentTime)
                 logger.info("Updated Elapsed Daylight = \(elapsedTime)")
             }
             return elapsedTime

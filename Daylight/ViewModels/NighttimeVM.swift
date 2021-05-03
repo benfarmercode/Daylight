@@ -15,14 +15,19 @@ extension Nighttime{
         let calendar = Calendar.current
         
         func setup(locationData: LocationData){
+            updateTimeData()
             
-            //CHANGE HOUR SHIFT TO SIMULATE DIFFERENT TIMES
-            //SET HOUR SHIFT TO 0 TO USE CURRENT TIME
-            let hourShift = -0
-            let timeShift = Double(60*60*hourShift)
+            self.locationData = locationData
+
+            logger.info("Nighttime CurrentTime: \(self.timeData.currentTime)")
+            logger.info("Nighttime Sunset: \(self.timeData.sunset)")
+            logger.info("Nighttime Sunrise: \(self.timeData.sunrise)")
+        }
+        
+        func updateTimeData(){
+            let timeShift = Double(60*60*globalHourShift)
             
             //current time at night
-           
             self.timeData.currentTime = Date().addingTimeInterval(timeShift)
             
             //check if before midnight or after midnight
@@ -38,24 +43,18 @@ extension Nighttime{
             //set the sunrise and sunset times accounting for the correct day due to change at midnight
             if isAfterMidnight{
                 //"todays" sunrise
-                (self.timeData.sunrise, _) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(timeShift), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+                (self.timeData.sunrise, _) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
                 
                 //previous days sunset
-                (_, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(-60*60*24 + timeShift), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+                (_, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime.addingTimeInterval(-60*60*24), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
             }
             else{ //is before midnight
                 //tomorrows sunrise
-                (self.timeData.sunrise, _) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(60*60*24 + timeShift), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+                (self.timeData.sunrise, _) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime.addingTimeInterval(60*60*24), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
                 
                 //todays sunset
-                (_, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(timeShift), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+                (_, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
             }
-            
-            self.locationData = locationData
-
-            logger.info("Nighttime CurrentTime: \(self.timeData.currentTime)")
-            logger.info("Nighttime Sunset: \(self.timeData.sunset)")
-            logger.info("Nighttime Sunrise: \(self.timeData.sunrise)")
         }
         
         func getSunriseString() -> String {
@@ -67,7 +66,7 @@ extension Nighttime{
         }
     
         func getCurrentTimeString() -> String{
-            return getTimeStringFromDate(Date())
+            return getTimeStringFromDate(self.timeData.currentTime)
         }
     
         func getTimeStringFromDate(_ dateObject: Date) -> String{
@@ -88,9 +87,7 @@ extension Nighttime{
         }
         
         func getElapsedNighttimeInterval() -> Int{
-            let currentTime = Date()
-//            let currentTime = self.timeData.currentTime
-            let elapsedTime = getSecondsBetweenDates(from: self.timeData.sunset, to: currentTime)
+            let elapsedTime = getSecondsBetweenDates(from: self.timeData.sunset, to: self.timeData.currentTime)
             logger.info("Elapsed Night Time = \(elapsedTime)")
             return elapsedTime
         }

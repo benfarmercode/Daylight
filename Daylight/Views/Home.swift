@@ -8,29 +8,34 @@
 import SwiftUI
 
 let subsystem = Bundle.main.bundleIdentifier
+//DEBUG TOOL - use to change the "current time"
+let globalHourShift = 0
 
 struct Home: View {
     @StateObject var viewModel = ViewModel()
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack{
             background
                 .onAppear(){
                     viewModel.runLocationService()
+                    viewModel.scheduleMinuteChangeTimer()
                 }
             
-            // Need to refactor this... Daylight and Nighttime modes need to update at sunset.
-            // Currently this only occurs once at App startup.
             if viewModel.locationServiceComplete{
                 if viewModel.isDaytime{
                     Daylight()
+                        .transition(.opacity)
                 }
                 else{
                     Nighttime()
+                        .transition(.opacity)
                 }
             }
             else{
-                Text("Problem with location services.")
+                Text("Waiting for location services...")
             }
         }
     }

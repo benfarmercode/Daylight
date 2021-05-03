@@ -6,6 +6,7 @@
 //
 import CoreLocation
 import os.log
+import SwiftUI
 
 extension Home{
     class ViewModel: ObservableObject{
@@ -45,11 +46,7 @@ extension Home{
         }
         
         func checkIsDaytime(){
-            
-            //CHANGE HOUR SHIFT TO SIMULATE DIFFERENT TIMES
-            //SET HOUR SHIFT TO 0 TO USE CURRENT TIME
-            let hourShift = -0
-            let timeShift = Double(60*60*hourShift)
+            let timeShift = Double(60*60*globalHourShift)
             
             let currentTime = Date().addingTimeInterval(timeShift)
             let (sunrise, sunset) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(timeShift), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
@@ -65,7 +62,29 @@ extension Home{
             self.logger.info("Sunset Or After: \(isSunsetOrAfter)")
 
             let nighttime = isBeforeSunrise || isSunsetOrAfter
-            self.isDaytime = !nighttime
+            
+            withAnimation(.linear(duration: 4)) {
+                self.isDaytime = !nighttime
+            }
+        }
+        
+        func scheduleMinuteChangeTimer(){
+            let calendar = Calendar(identifier: .gregorian)
+            let currentSeconds = calendar.dateComponents([.second], from: Date()).second
+            print(currentSeconds ?? -1)
+            
+            //schedule timer to trigger at the next minute change
+            let _ = Timer.scheduledTimer(timeInterval: Double(60 - (currentSeconds ?? 0)), target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
+        }
+        
+        @objc func fireTimer(){
+            //schedule a repeating timer every 60 seconds to check if daytime or nighttime.
+            let _ = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(checkIsDaytimeTimer), userInfo: nil, repeats: true)
+            checkIsDaytime()
+        }
+        
+        @objc func checkIsDaytimeTimer(){
+            checkIsDaytime()
         }
     }
 
