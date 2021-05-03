@@ -19,6 +19,8 @@ struct Home: View {
                     viewModel.runLocationService()
                 }
             
+            // Need to refactor this... Daylight and Nighttime modes need to update at sunset.
+            // Currently this only occurs once at App startup.
             if viewModel.locationServiceComplete{
                 if viewModel.isDaytime{
                     Daylight()

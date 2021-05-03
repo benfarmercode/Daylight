@@ -18,7 +18,7 @@ extension Nighttime{
             
             //CHANGE HOUR SHIFT TO SIMULATE DIFFERENT TIMES
             //SET HOUR SHIFT TO 0 TO USE CURRENT TIME
-            let hourShift = 0
+            let hourShift = -0
             let timeShift = Double(60*60*hourShift)
             
             //current time at night
@@ -83,27 +83,27 @@ extension Nighttime{
         
         func getTotalNighttimeInterval() -> Int{
             let totalNighttime = getSecondsBetweenDates(from: self.timeData.sunset, to: self.timeData.sunrise)
-            print("NighttimeVM: Total Nighttime = \(totalNighttime)")
+            logger.info("Total Nighttime = \(totalNighttime)")
             return totalNighttime
         }
         
         func getElapsedNighttimeInterval() -> Int{
-            //let currentTime = Date()
-            let currentTime = self.timeData.currentTime
+            let currentTime = Date()
+//            let currentTime = self.timeData.currentTime
             let elapsedTime = getSecondsBetweenDates(from: self.timeData.sunset, to: currentTime)
-            print("NighttimeVM: Elapsed Time = \(elapsedTime)")
+            logger.info("Elapsed Night Time = \(elapsedTime)")
             return elapsedTime
         }
         
         func getPercentNighttimeElapsed() -> Double{
             let percent = (Double(getElapsedNighttimeInterval()) / Double(getTotalNighttimeInterval())) * 100
-            print("NighttimeVM: Percent = \(percent)")
+            logger.info("Elapsed Night Percent = \(percent)")
             return percent
         }
         
         func getEndAngle() -> Double{
             let endAngle = -Double.pi * 0.5 + (2 * Double.pi * (getPercentNighttimeElapsed() / 100))
-            print("NighttimeVM: endAngle = \(endAngle)")
+            logger.info("Night EndAngle = \(endAngle)")
             return endAngle
         }
         

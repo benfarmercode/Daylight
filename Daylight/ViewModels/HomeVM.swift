@@ -48,7 +48,7 @@ extension Home{
             
             //CHANGE HOUR SHIFT TO SIMULATE DIFFERENT TIMES
             //SET HOUR SHIFT TO 0 TO USE CURRENT TIME
-            let hourShift = 0
+            let hourShift = -0
             let timeShift = Double(60*60*hourShift)
             
             let currentTime = Date().addingTimeInterval(timeShift)
