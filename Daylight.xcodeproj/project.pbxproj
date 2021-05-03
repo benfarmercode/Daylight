@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272290AF263FBBD0006DC4C3 /* NTSolar.swift */; };
 		272C208E263411FB00C929B8 /* Nighttime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C208D263411FB00C929B8 /* Nighttime.swift */; };
 		272C20932634151800C929B8 /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
 		27540001263347F200885193 /* Daylight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27540000263347F200885193 /* Daylight.swift */; };
@@ -17,7 +18,6 @@
 		2754FF992633337A00885193 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2754FF982633337A00885193 /* Preview Assets.xcassets */; };
 		2754FFC22633344D00885193 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFC12633344D00885193 /* Home.swift */; };
 		2754FFCF26333C5800885193 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFCE26333C5800885193 /* TimeData.swift */; };
-		2754FFD826333D5600885193 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = 2754FFD726333D5600885193 /* Solar */; };
 		2754FFDD26333DD900885193 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFDC26333DD900885193 /* LocationData.swift */; };
 		2754FFF32633441100885193 /* DaylightVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFF22633441100885193 /* DaylightVM.swift */; };
 		277C79C6263E8F4500334D7F /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C79C5263E8F4500334D7F /* Shapes.swift */; };
@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		272290AF263FBBD0006DC4C3 /* NTSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTSolar.swift; sourceTree = "<group>"; };
 		272C208D263411FB00C929B8 /* Nighttime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nighttime.swift; sourceTree = "<group>"; };
 		272C20922634151800C929B8 /* NighttimeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NighttimeVM.swift; sourceTree = "<group>"; };
 		27540000263347F200885193 /* Daylight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daylight.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2754FFD826333D5600885193 /* Solar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				2754003326339E3700885193 /* LocationManager.swift */,
+				272290AF263FBBD0006DC4C3 /* NTSolar.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,7 +183,6 @@
 			);
 			name = Daylight;
 			packageProductDependencies = (
-				2754FFD726333D5600885193 /* Solar */,
 			);
 			productName = Daylight;
 			productReference = 2754FF8E2633337900885193 /* Daylight.app */;
@@ -256,7 +256,6 @@
 			);
 			mainGroup = 2754FF852633337900885193;
 			packageReferences = (
-				2754FFD626333D5600885193 /* XCRemoteSwiftPackageReference "Solar" */,
 			);
 			productRefGroup = 2754FF8F2633337900885193 /* Products */;
 			projectDirPath = "";
@@ -303,6 +302,7 @@
 				272C20932634151800C929B8 /* NighttimeVM.swift in Sources */,
 				2754FFF32633441100885193 /* DaylightVM.swift in Sources */,
 				2754FFC22633344D00885193 /* Home.swift in Sources */,
+				272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */,
 				272C208E263411FB00C929B8 /* Nighttime.swift in Sources */,
 				27540010263357A600885193 /* HomeVM.swift in Sources */,
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
@@ -628,25 +628,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2754FFD626333D5600885193 /* XCRemoteSwiftPackageReference "Solar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ceeK/Solar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2754FFD726333D5600885193 /* Solar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2754FFD626333D5600885193 /* XCRemoteSwiftPackageReference "Solar" */;
-			productName = Solar;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2754FF862633337900885193 /* Project object */;
 }

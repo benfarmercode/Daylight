@@ -5,8 +5,6 @@
 //  Created by Ben Farmer on 4/23/21.
 //
 import CoreLocation
-import Solar
-
 
 //ERRORS occuring at 7:00PM central time, or 0:00 UTC when the date changes to the next day. must account for this error...
 //
@@ -19,8 +17,7 @@ extension Daylight{
         
         func setup(locationData: LocationData){
             self.timeData.currentTime = Date()
-            self.timeData.sunrise = Solar(coordinate: locationData.coordinates)?.sunrise ?? Date()
-            self.timeData.sunset = Solar(coordinate: locationData.coordinates)?.sunset ?? Date()
+            (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: Date(), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
             self.locationData = locationData
 
             print("~DaylightVM Setup: TimeData: \(timeData)")
@@ -63,8 +60,7 @@ extension Daylight{
             // replace sunrise/sunset with previous UTC day sunset if elapsedtime is negative
             // elapsed time is negative when UTC day reaches next day (0:00) as sunrise and sunset times move forward
             if elapsedTime < 0 {
-                self.timeData.sunrise = Solar(coordinate: locationData.coordinates)?.sunrise?.addingTimeInterval(-60*60*24) ?? Date()
-                self.timeData.sunset = Solar(coordinate: locationData.coordinates)?.sunset?.addingTimeInterval(-60*60*24) ?? Date()
+                (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: Date().addingTimeInterval(-60*60*24), atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
                 elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: currentTime)
                 print("DaylightVM: Updated Elapsed Time = \(elapsedTime)")
             }

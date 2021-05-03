@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let subsystem = Bundle.main.bundleIdentifier
+
 struct Home: View {
     @StateObject var viewModel = ViewModel()
     
@@ -25,7 +27,6 @@ struct Home: View {
                     Nighttime()
                 }
             }
-            
             else{
                 Text("Problem with location services.")
             }

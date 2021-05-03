@@ -6,11 +6,14 @@
 //
 
 import CoreLocation
+import os.log
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+    let logger = Logger(subsystem: subsystem!, category: "LocationManager")
     static var shared = LocationManager()
     let manager = CLLocationManager()
     var updateLocationCompletion: ((CLLocation) -> Void)?
+
     
     var locationData = LocationData()
     
@@ -29,7 +32,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         self.locationData.location = location
         self.locationData.coordinates = location.coordinate
         
-        print("~LocationManager: Location: \(location)")
+        logger.info("Location: \(location)")
+       // print("~LocationManager: Location: \(location)")
         updateLocationCompletion?(location)
         manager.stopUpdatingLocation()
     }
@@ -56,7 +60,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             
             self.locationData.locationName = name
             
-            print("~LocationManager: Location Name: \(name)")
+            self.logger.info("Location Name: \(name)")
             completion(name)
         }
     }
