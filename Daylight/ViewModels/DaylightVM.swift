@@ -6,6 +6,7 @@
 //
 import CoreLocation
 import os.log
+import WidgetKit
 //ERRORS occuring at 7:00PM central time, or 0:00 UTC when the date changes to the next day. must account for this error...
 //
 
@@ -13,12 +14,10 @@ extension Daylight{
     class ViewModel: ObservableObject{
         let logger = Logger(subsystem: subsystem!, category: "DaylightVM")
         @Published var timeData = TimeData()
-        @Published var locationData = LocationData()
         let calendar = Calendar.current
         
-        func setup(locationData: LocationData){
+        func setup(){
             updateTimeData()
-            self.locationData = locationData
             logger.info("Daylight CurrentTime: \(self.timeData.currentTime)")
             logger.info("Daylight Sunset: \(self.timeData.sunset)")
             logger.info("Daylight Sunrise: \(self.timeData.sunrise)")
@@ -29,6 +28,8 @@ extension Daylight{
             
             self.timeData.currentTime = Date().addingTimeInterval(timeShift)
             (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+            
+            _ = getEndAngle()
         }
     
         func getSunriseString() -> String {
@@ -89,6 +90,16 @@ extension Daylight{
                 endAngle = -Double.pi * 0.5
             }
             logger.info("Daylight EndAngle = \(endAngle)")
+            
+            /* APPGROUP */
+            if let encode = try? JSONEncoder().encode(endAngle) {
+                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
+            } else {
+                logger.notice("EndAngle not stored to user defaults")
+            }
+            WidgetCenter.shared.reloadAllTimelines()
+            /*  */
+            
             return endAngle
         }
     }

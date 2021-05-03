@@ -7,6 +7,7 @@
 import CoreLocation
 import os.log
 import SwiftUI
+import WidgetKit
 
 extension Home{
     class ViewModel: ObservableObject{
@@ -66,6 +67,13 @@ extension Home{
             withAnimation(.linear(duration: 4)) {
                 self.isDaytime = !nighttime
             }
+            
+            /* APPGROUP */
+            let isDaytime = try! JSONEncoder().encode(!nighttime)
+            UserDefaults(suiteName:
+            suiteName)!.set(isDaytime, forKey: "isDaytime")
+            WidgetCenter.shared.reloadAllTimelines()
+            /*  */
         }
         
         func scheduleMinuteChangeTimer(){

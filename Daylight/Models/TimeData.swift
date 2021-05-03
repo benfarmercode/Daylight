@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeData{
+struct TimeData: Codable{
     var currentTime = Date()
     var sunrise = Date()
     var sunset = Date()

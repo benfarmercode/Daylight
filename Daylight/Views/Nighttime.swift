@@ -30,7 +30,7 @@ struct Nighttime: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear{
-            viewModel.setup(locationData: LocationManager.shared.locationData)
+            viewModel.setup()
         }
         .onDisappear{
             timer.upstream.connect().cancel()
@@ -53,7 +53,7 @@ struct Nighttime: View {
     }
     
     var background: some View{
-        RadialGradient(gradient: Gradient(colors: [ Color(#colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), Color(  #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) )]), center: .center, startRadius: 2, endRadius: 312)
+        BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) ))
     }
     
     //TAB 1//***
@@ -71,11 +71,11 @@ struct Nighttime: View {
     }
     
     var moonShadow: some View{
-        CircleFull(fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ))
+        CircleFull(radius: 128, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
     }
     
     var moon: some View{
-        CircleSlice(endAngle: viewModel.getEndAngle(), fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1)
+        CircleSlice(radius: 128, endAngle: viewModel.getEndAngle(), fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
     }
 
     var percentIndicator: some View{
@@ -101,7 +101,7 @@ struct Nighttime: View {
             Text("Sunrise: \(viewModel.getSunriseString())")
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
             Text("")
-            Text("Location: \(viewModel.locationData.locationName)")
+            Text("Location: \(LocationManager.shared.locationData.locationName)")
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
         }
     }

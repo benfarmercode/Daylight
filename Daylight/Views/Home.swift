@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-let subsystem = Bundle.main.bundleIdentifier
-//DEBUG TOOL - use to change the "current time"
-let globalHourShift = 0
-
 struct Home: View {
     @StateObject var viewModel = ViewModel()
     
@@ -34,9 +30,9 @@ struct Home: View {
                         .transition(.opacity)
                 }
             }
-            else{
-                Text("Waiting for location services...")
-            }
+//            else{
+//                Text("Waiting for location services...")
+//            }
         }
     }
     

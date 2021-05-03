@@ -6,19 +6,16 @@
 //
 import CoreLocation
 import os.log
+import WidgetKit
 
 extension Nighttime{
     class ViewModel: ObservableObject{
         let logger = Logger(subsystem: subsystem!, category: "NighttimeVM")
         @Published var timeData = TimeData()
-        @Published var locationData = LocationData()
         let calendar = Calendar.current
         
-        func setup(locationData: LocationData){
+        func setup(){
             updateTimeData()
-            
-            self.locationData = locationData
-
             logger.info("Nighttime CurrentTime: \(self.timeData.currentTime)")
             logger.info("Nighttime Sunset: \(self.timeData.sunset)")
             logger.info("Nighttime Sunrise: \(self.timeData.sunrise)")
@@ -101,6 +98,17 @@ extension Nighttime{
         func getEndAngle() -> Double{
             let endAngle = -Double.pi * 0.5 + (2 * Double.pi * (getPercentNighttimeElapsed() / 100))
             logger.info("Night EndAngle = \(endAngle)")
+            
+            /* APPGROUP */
+            if let encode = try? JSONEncoder().encode(endAngle) {
+                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
+            } else {
+                logger.notice("EndAngle not stored to user defaults")
+            }
+            
+            WidgetCenter.shared.reloadAllTimelines()
+            /*  */
+            
             return endAngle
         }
         
