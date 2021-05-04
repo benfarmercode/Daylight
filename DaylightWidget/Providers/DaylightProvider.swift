@@ -8,7 +8,7 @@
 import WidgetKit
 
 struct DaylightProvider: TimelineProvider {
-    private let placeholderEntry = DaylightEntry(date: Date(), isDaytime: true, endAngle: Double.pi * 0.5)
+    private let placeholderEntry = DaylightEntry(date: Date(), isDaytime: true, endAngle: Double.pi * 0.5, timeData: TimeData())
     //dummy entry when widget is loading the data
     func placeholder(in context: Context) -> DaylightEntry {
         return placeholderEntry
@@ -22,28 +22,52 @@ struct DaylightProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<DaylightEntry>) -> ()) {
         var entries: [DaylightEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        
         /* Reading the encoded data from your shared App Group container storage */
-        let encodedData_isDaytime  = UserDefaults(suiteName: suiteName)!.object(forKey: "isDaytime") as? Data
-        let encodedData_endAngle  = UserDefaults(suiteName: suiteName)!.object(forKey: "endAngle") as? Data
+        var isDaytime = true
+        var endAngle = Double.pi * 0.5
+        var timeData = TimeData()
+        
+        let isDaytimeEncoded  = UserDefaults(suiteName: suiteName)!.object(forKey: "isDaytime") as? Data
+        let endAngleEncoded  = UserDefaults(suiteName: suiteName)!.object(forKey: "endAngle") as? Data
+        let timeDataEncoded  = UserDefaults(suiteName: suiteName)!.object(forKey: "timeData") as? Data
 
-        /* Decoding it using JSONDecoder*/
-        if let isDaytimeEncoded = encodedData_isDaytime {
-            let isDaytimeDecoded = try? JSONDecoder().decode(Bool.self, from: isDaytimeEncoded)
-            if let isDaytime = isDaytimeDecoded{
-                
-                if let endAngleEncoded = encodedData_endAngle{
-                    let endAngleDecoded = try? JSONDecoder().decode(Double.self, from: endAngleEncoded)
-                    if let endAngle = endAngleDecoded{
-                        let currentDate = Date()
-                        let entry = DaylightEntry(date: currentDate, isDaytime: isDaytime, endAngle: endAngle)
-                        entries.append(entry)
-                    }
-                }
+        if let isDaytimePlaceholder = isDaytimeEncoded{
+            let isDayTimeDecoded =  try? JSONDecoder().decode(Bool.self, from: isDaytimePlaceholder)
+            if isDayTimeDecoded != nil{
+                isDaytime = isDayTimeDecoded!
+            }
+            else{
+                isDaytime = true
+                print("isDaytime could not be decoded")
             }
         }
+        
+        if let endAnglePlaceholder = endAngleEncoded{
+            let endAngleDecoded =  try? JSONDecoder().decode(Double.self, from: endAnglePlaceholder)
+            if endAngleDecoded != nil{
+                endAngle = endAngleDecoded!
+            }
+            else{
+                endAngle = Double.pi * 0.5
+                print("endAngle could not be decoded")
+            }
+        }
+        
+        if let timeDataPlaceholder = timeDataEncoded{
+            let timeDataDecoded =  try? JSONDecoder().decode(TimeData.self, from: timeDataPlaceholder)
+            if timeDataDecoded != nil{
+                timeData = timeDataDecoded!
+            }
+            else{
+                timeData = TimeData()
+                print("timeData could not be decoded")
+            }
+        }
+        
+        let currentDate = Date()
+        let entry = DaylightEntry(date: currentDate, isDaytime: isDaytime, endAngle: endAngle, timeData: timeData)
+        entries.append(entry)
+                   
         let refreshDate = Calendar.current.date(byAdding: .second, value: 5, to: Date())!
         let timeline = Timeline(entries: entries, policy: .after(refreshDate))
         completion(timeline)

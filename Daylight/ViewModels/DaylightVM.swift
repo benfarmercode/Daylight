@@ -97,7 +97,7 @@ extension Daylight{
             } else {
                 logger.notice("EndAngle not stored to user defaults")
             }
-            WidgetCenter.shared.reloadAllTimelines()
+//            WidgetCenter.shared.reloadAllTimelines()
             /*  */
             
             return endAngle

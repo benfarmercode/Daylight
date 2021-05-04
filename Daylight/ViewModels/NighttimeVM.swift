@@ -52,6 +52,14 @@ extension Nighttime{
                 //todays sunset
                 (_, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
             }
+            
+            /* APPGROUP */
+            if let encode = try? JSONEncoder().encode(self.timeData) {
+                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "timeData")
+                logger.info("TimeData stored to user defaults")
+            } else {
+                logger.notice("TimeData not stored to user defaults")
+            }
         }
         
         func getSunriseString() -> String {
@@ -102,11 +110,12 @@ extension Nighttime{
             /* APPGROUP */
             if let encode = try? JSONEncoder().encode(endAngle) {
                 UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
+                logger.info("EndAngle stored to user defaults")
             } else {
                 logger.notice("EndAngle not stored to user defaults")
             }
             
-            WidgetCenter.shared.reloadAllTimelines()
+//            WidgetCenter.shared.reloadAllTimelines()
             /*  */
             
             return endAngle

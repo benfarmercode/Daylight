@@ -12,4 +12,5 @@ struct DaylightEntry: TimelineEntry {
     let date: Date
     let isDaytime: Bool
     let endAngle: Double
+    let timeData: TimeData
 }
