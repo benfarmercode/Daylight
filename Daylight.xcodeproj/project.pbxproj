@@ -12,6 +12,7 @@
 		272C20932634151800C929B8 /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
 		273448862643524000FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
 		2734488F2643527100FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
+		273448992643575000FFBB8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273448982643575000FFBB8C /* Assets.xcassets */; };
 		27540001263347F200885193 /* Daylight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27540000263347F200885193 /* Daylight.swift */; };
 		27540010263357A600885193 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754000F263357A600885193 /* HomeVM.swift */; };
 		2754003426339E3700885193 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754003326339E3700885193 /* LocationManager.swift */; };
@@ -26,7 +27,6 @@
 		27CF4E8E26405C5A00BA71BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */; };
 		27CF4E9026405C5A00BA71BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */; };
 		27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */; };
-		27CF4E9526405C5B00BA71BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CF4E9426405C5B00BA71BE /* Assets.xcassets */; };
 		27CF4E9926405C5B00BA71BE /* DaylightWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		27CF4ECB2640661600BA71BE /* DaylightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4EAF2640623B00BA71BE /* DaylightEntry.swift */; };
 		27CF4ED42640661A00BA71BE /* DaylightProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4EA52640620700BA71BE /* DaylightProvider.swift */; };
@@ -92,6 +92,7 @@
 		272C208D263411FB00C929B8 /* Nighttime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nighttime.swift; sourceTree = "<group>"; };
 		272C20922634151800C929B8 /* NighttimeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NighttimeVM.swift; sourceTree = "<group>"; };
 		273448852643524000FFBB8C /* WidsetSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidsetSizes.swift; sourceTree = "<group>"; };
+		273448982643575000FFBB8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27540000263347F200885193 /* Daylight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daylight.swift; sourceTree = "<group>"; };
 		2754000F263357A600885193 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		2754003326339E3700885193 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightWidget.swift; sourceTree = "<group>"; };
-		27CF4E9426405C5B00BA71BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27CF4E9626405C5B00BA71BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27CF4EA52640620700BA71BE /* DaylightProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightProvider.swift; sourceTree = "<group>"; };
 		27CF4EAF2640623B00BA71BE /* DaylightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightEntry.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				27CF4EA3264061D400BA71BE /* Providers */,
 				27CF4EA2264061CD00BA71BE /* Entries */,
 				27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */,
-				27CF4E9426405C5B00BA71BE /* Assets.xcassets */,
+				273448982643575000FFBB8C /* Assets.xcassets */,
 				27CF4E9626405C5B00BA71BE /* Info.plist */,
 			);
 			path = DaylightWidget;
@@ -455,7 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CF4E9526405C5B00BA71BE /* Assets.xcassets in Resources */,
+				273448992643575000FFBB8C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
