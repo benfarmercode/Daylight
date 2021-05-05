@@ -69,9 +69,9 @@ extension Home{
             }
             
             /* APPGROUP */
-            let isDaytime = try! JSONEncoder().encode(!nighttime)
-            UserDefaults(suiteName:
-            suiteName)!.set(isDaytime, forKey: "isDaytime")
+//            let isDaytime = try! JSONEncoder().encode(!nighttime)
+//            UserDefaults(suiteName:
+//            suiteName)!.set(isDaytime, forKey: "isDaytime")
 //            WidgetCenter.shared.reloadAllTimelines()
             /*  */
         }

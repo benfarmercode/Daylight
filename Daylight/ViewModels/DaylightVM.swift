@@ -34,13 +34,13 @@ extension Daylight{
             _ = getEndAngle()
             
             /* APPGROUP */
-            if let encode = try? JSONEncoder().encode(self.timeData) {
-                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "timeData")
-                logger.info("TimeData stored to user defaults")
-            } else {
-                logger.notice("TimeData not stored to user defaults")
-            }
-            WidgetCenter.shared.reloadAllTimelines()
+//            if let encode = try? JSONEncoder().encode(self.timeData) {
+//                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "timeData")
+//                logger.info("TimeData stored to user defaults")
+//            } else {
+//                logger.notice("TimeData not stored to user defaults")
+//            }
+//            WidgetCenter.shared.reloadAllTimelines()
         }
         
         func updateEndAngle(){
@@ -114,11 +114,11 @@ extension Daylight{
             logger.info("Daylight EndAngle = \(endAngle)")
             
             /* APPGROUP */
-            if let encode = try? JSONEncoder().encode(endAngle) {
-                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
-            } else {
-                logger.notice("EndAngle not stored to user defaults")
-            }
+//            if let encode = try? JSONEncoder().encode(endAngle) {
+//                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
+//            } else {
+//                logger.notice("EndAngle not stored to user defaults")
+//            }
             
             /*  */
             
