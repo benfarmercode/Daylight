@@ -31,12 +31,14 @@ struct Nighttime: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear{
             viewModel.setup()
+            viewModel.reloadWidgets()
         }
         .onDisappear{
             timer.upstream.connect().cancel()
         }
         .onReceive(timer) {_ in
             viewModel.updateTimeData()
+            viewModel.updateEndAngle()
         }
     }
     
@@ -75,7 +77,7 @@ struct Nighttime: View {
     }
     
     var moon: some View{
-        CircleSlice(radius: 128, endAngle: viewModel.getEndAngle(), fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
+        CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
     }
 
     var percentIndicator: some View{

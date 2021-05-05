@@ -33,8 +33,19 @@ struct DaylightWidgetView : View {
                 BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
                 CircleFull(radius: 48, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: true, widgetType: .small)
                 CircleSlice(radius: 48, endAngle: entry.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: true, widgetType: .small)
+//
+//                VStack{
+//                    HStack{
+//                        Spacer()
+//                        Text(getTimeStringFromDate(entry.timeData.currentTime))
+//                            .font(.caption)
+//                            .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+//                    }
+//                    Spacer()
+//                }.padding(.all, 10)
+                
             }
-            else {
+            else {//isNighttime
                 BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), outerColor:Color( #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) ))
                  CircleFull(radius: 48, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: true, widgetType: .small)
                  CircleSlice(radius: 48, endAngle: entry.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: true, widgetType: .small)
@@ -46,35 +57,64 @@ struct DaylightWidgetView : View {
         ZStack{
             if entry.isDaytime {
                 BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
+                
                 HStack{
                     ZStack{
                         CircleFull(radius: 64, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: true, widgetType: .medium)
                         CircleSlice(radius: 64, endAngle: entry.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: true, widgetType: .medium)
                     }.offset(x: -75)
+                    
                     VStack{
                         Text("Sunrise: \(getTimeStringFromDate(entry.timeData.sunrise))")
-                        Text(getTimeStringFromDate(entry.timeData.currentTime))
                         Text("Sunset: \(getTimeStringFromDate(entry.timeData.sunset))")
                     }
                     .offset(x:-25)
                     .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
                 }
+                
+                VStack{
+                    HStack{
+                        Spacer()
+                        Text(getTimeStringFromDate(entry.timeData.currentTime))
+                            .font(.caption)
+                            .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+                    }
+                    Spacer()
+                }.padding(.all, 10)
             }
-            else {
+            else {//isNighttime
                 BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), outerColor:Color( #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) ))
                 HStack{
                     ZStack{
                         CircleFull(radius: 64, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: true, widgetType: .medium)
                         CircleSlice(radius: 64, endAngle: entry.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: true, widgetType: .medium)
                     }.offset(x: -75)
+                    
                     VStack{
-                        Text("Sunrise: \(getTimeStringFromDate(entry.timeData.sunrise))")
-                        Text(getTimeStringFromDate(entry.timeData.currentTime))
+                        HStack{
+                            
+                        }
+                    }
+                    
+                    VStack{
                         Text("Sunset: \(getTimeStringFromDate(entry.timeData.sunset))")
+                        Text("Sunrise: \(getTimeStringFromDate(entry.timeData.sunrise))")
                     }
                     .offset(x:-25)
                     .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
+                    
+                   
                 }
+                
+                VStack{
+                    HStack{
+                        Spacer()
+                        Text(getTimeStringFromDate(entry.timeData.currentTime))
+                            .font(.caption)
+                            .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
+                    }
+                    Spacer()
+                }.padding(.all, 10)
             }
         }
     }
@@ -86,7 +126,7 @@ struct DaylightWidgetView : View {
                 CircleFull(radius: 96, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: true, widgetType: .large)
                 CircleSlice(radius: 96, endAngle: entry.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: true, widgetType: .large)
             }
-            else {
+            else {//isNighttime
                 BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), outerColor:Color( #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) ))
                  CircleFull(radius: 96, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: true, widgetType: .large)
                  CircleSlice(radius: 96, endAngle: entry.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: true, widgetType: .large)

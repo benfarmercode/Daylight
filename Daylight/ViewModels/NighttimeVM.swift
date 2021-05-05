@@ -12,10 +12,12 @@ extension Nighttime{
     class ViewModel: ObservableObject{
         let logger = Logger(subsystem: subsystem!, category: "NighttimeVM")
         @Published var timeData = TimeData()
+        @Published var endAngle = Double.pi * 0.5
         let calendar = Calendar.current
         
         func setup(){
             updateTimeData()
+            updateEndAngle()
             logger.info("Nighttime CurrentTime: \(self.timeData.currentTime)")
             logger.info("Nighttime Sunset: \(self.timeData.sunset)")
             logger.info("Nighttime Sunrise: \(self.timeData.sunrise)")
@@ -60,6 +62,12 @@ extension Nighttime{
             } else {
                 logger.notice("TimeData not stored to user defaults")
             }
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+        
+        func updateEndAngle(){
+            self.endAngle = -Double.pi * 0.5 + (2 * Double.pi * (getPercentNighttimeElapsed() / 100))
+            logger.info("Night EndAngle = \(self.endAngle)")
         }
         
         func getSunriseString() -> String {
@@ -119,6 +127,10 @@ extension Nighttime{
             /*  */
             
             return endAngle
+        }
+        
+        func reloadWidgets(){
+            WidgetCenter.shared.reloadAllTimelines()
         }
         
     }

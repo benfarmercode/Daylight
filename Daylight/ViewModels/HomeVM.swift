@@ -72,7 +72,7 @@ extension Home{
             let isDaytime = try! JSONEncoder().encode(!nighttime)
             UserDefaults(suiteName:
             suiteName)!.set(isDaytime, forKey: "isDaytime")
-            WidgetCenter.shared.reloadAllTimelines()
+//            WidgetCenter.shared.reloadAllTimelines()
             /*  */
         }
         
@@ -94,6 +94,8 @@ extension Home{
         @objc func checkIsDaytimeTimer(){
             checkIsDaytime()
         }
+        
+        
     }
 
 }

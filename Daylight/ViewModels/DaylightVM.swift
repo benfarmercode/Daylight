@@ -13,11 +13,13 @@ import WidgetKit
 extension Daylight{
     class ViewModel: ObservableObject{
         let logger = Logger(subsystem: subsystem!, category: "DaylightVM")
-        @Published var timeData = TimeData()
         let calendar = Calendar.current
+        @Published var timeData = TimeData()
+        @Published var endAngle = Double.pi * 0.5
         
         func setup(){
             updateTimeData()
+            updateEndAngle()
             logger.info("Daylight CurrentTime: \(self.timeData.currentTime)")
             logger.info("Daylight Sunset: \(self.timeData.sunset)")
             logger.info("Daylight Sunrise: \(self.timeData.sunrise)")
@@ -30,6 +32,26 @@ extension Daylight{
             (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
             
             _ = getEndAngle()
+            
+            /* APPGROUP */
+            if let encode = try? JSONEncoder().encode(self.timeData) {
+                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "timeData")
+                logger.info("TimeData stored to user defaults")
+            } else {
+                logger.notice("TimeData not stored to user defaults")
+            }
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+        
+        func updateEndAngle(){
+            self.endAngle = (2 * Double.pi * (getPercentDaylightElapsed() / 100)) - Double.pi * 0.5
+            
+            // prevent more than 1 rotation of end angle.
+            // force endAngle = startAngle if first rotation complete.
+            if self.endAngle > (3 * Double.pi / 2){
+                self.endAngle = -Double.pi * 0.5
+            }
+            logger.info("Daylight EndAngle = \(self.endAngle)")
         }
     
         func getSunriseString() -> String {
@@ -97,10 +119,14 @@ extension Daylight{
             } else {
                 logger.notice("EndAngle not stored to user defaults")
             }
-//            WidgetCenter.shared.reloadAllTimelines()
+            
             /*  */
             
             return endAngle
+        }
+        
+        func reloadWidgets(){
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 }

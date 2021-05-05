@@ -31,12 +31,14 @@ struct Daylight: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear{
             viewModel.setup()
+            viewModel.reloadWidgets()
         }
         .onDisappear{
             timer.upstream.connect().cancel()
         }
         .onReceive(timer) {_ in
             viewModel.updateTimeData()
+            viewModel.updateEndAngle()
         }
     }
     
@@ -77,7 +79,7 @@ struct Daylight: View {
     }
     
     var sun: some View{
-        CircleSlice(radius: 128, endAngle: viewModel.getEndAngle(), fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
+        CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
     }
     
     var percentIndicator: some View{
