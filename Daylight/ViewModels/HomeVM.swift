@@ -20,9 +20,6 @@ extension Home{
         func runLocationService(){
             logger.info("Location service started.")
             LocationManager.shared.getUserLocation{ [weak self] location in
-//                guard let location = LocationManager.shared.locationData.location else{
-//                    return
-//                }
                 self?.getLocationName()
             }
         }
@@ -30,10 +27,6 @@ extension Home{
         func getLocationName(){
             logger.info("Resolving location name.")
             LocationManager.shared.resolveLocationName(with: LocationManager.shared.locationData.location){[weak self]locationName in
-//                guard self?.locationManager.locationData.locationName != nil else{
-//                    print("~HomeVM: location name could not be resolved")
-//                    return
-//                }
                 self?.logger.info("Location name resolved!")
                 
                 self?.logger.info("Checking isDaytime.")
@@ -67,13 +60,6 @@ extension Home{
             withAnimation(.linear(duration: 4)) {
                 self.isDaytime = !nighttime
             }
-            
-            /* APPGROUP */
-//            let isDaytime = try! JSONEncoder().encode(!nighttime)
-//            UserDefaults(suiteName:
-//            suiteName)!.set(isDaytime, forKey: "isDaytime")
-//            WidgetCenter.shared.reloadAllTimelines()
-            /*  */
         }
         
         func scheduleMinuteChangeTimer(){

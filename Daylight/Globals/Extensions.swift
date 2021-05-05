@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 extension LocalizedStringKey.StringInterpolation {
     mutating func appendInterpolation(_ value: Bool) {
         appendInterpolation(String(value))

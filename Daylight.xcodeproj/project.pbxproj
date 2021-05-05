@@ -10,6 +10,8 @@
 		272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272290AF263FBBD0006DC4C3 /* NTSolar.swift */; };
 		272C208E263411FB00C929B8 /* Nighttime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C208D263411FB00C929B8 /* Nighttime.swift */; };
 		272C20932634151800C929B8 /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
+		273448862643524000FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
+		2734488F2643527100FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
 		27540001263347F200885193 /* Daylight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27540000263347F200885193 /* Daylight.swift */; };
 		27540010263357A600885193 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754000F263357A600885193 /* HomeVM.swift */; };
 		2754003426339E3700885193 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754003326339E3700885193 /* LocationManager.swift */; };
@@ -89,6 +91,7 @@
 		272290AF263FBBD0006DC4C3 /* NTSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTSolar.swift; sourceTree = "<group>"; };
 		272C208D263411FB00C929B8 /* Nighttime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nighttime.swift; sourceTree = "<group>"; };
 		272C20922634151800C929B8 /* NighttimeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NighttimeVM.swift; sourceTree = "<group>"; };
+		273448852643524000FFBB8C /* WidsetSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidsetSizes.swift; sourceTree = "<group>"; };
 		27540000263347F200885193 /* Daylight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daylight.swift; sourceTree = "<group>"; };
 		2754000F263357A600885193 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		2754003326339E3700885193 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -151,6 +154,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273448842643522F00FFBB8C /* WidgetSizes */ = {
+			isa = PBXGroup;
+			children = (
+				273448852643524000FFBB8C /* WidsetSizes.swift */,
+			);
+			path = WidgetSizes;
+			sourceTree = "<group>";
+		};
 		2754003226339DF200885193 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +258,7 @@
 		27CF4E9126405C5A00BA71BE /* DaylightWidget */ = {
 			isa = PBXGroup;
 			children = (
+				273448842643522F00FFBB8C /* WidgetSizes */,
 				27CF4EA4264061DC00BA71BE /* WidgetView */,
 				27CF4EA3264061D400BA71BE /* Providers */,
 				27CF4EA2264061CD00BA71BE /* Entries */,
@@ -464,6 +476,7 @@
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
 				2754003426339E3700885193 /* LocationManager.swift in Sources */,
 				2754FFDD26333DD900885193 /* LocationData.swift in Sources */,
+				273448862643524000FFBB8C /* WidsetSizes.swift in Sources */,
 				27CF4F3426407B2900BA71BE /* Extensions.swift in Sources */,
 				277C79C6263E8F4500334D7F /* Shapes.swift in Sources */,
 				27540001263347F200885193 /* Daylight.swift in Sources */,
@@ -498,6 +511,7 @@
 				27CF4F13264069D700BA71BE /* NighttimeVM.swift in Sources */,
 				27CF4ECB2640661600BA71BE /* DaylightEntry.swift in Sources */,
 				27CF4F18264069DC00BA71BE /* NTSolar.swift in Sources */,
+				2734488F2643527100FFBB8C /* WidsetSizes.swift in Sources */,
 				27CF4EFA264069C200BA71BE /* LocationManager.swift in Sources */,
 				27CF4F1D264069F200BA71BE /* LocationData.swift in Sources */,
 				27CF4EEB264067AB00BA71BE /* TimeData.swift in Sources */,

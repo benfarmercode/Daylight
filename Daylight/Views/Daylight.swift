@@ -104,7 +104,7 @@ struct Daylight: View {
         VStack{
             Text("Sunrise: \(viewModel.getSunriseString())")
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
-            Text("Current Time: \(viewModel.getCurrentTimeString())")
+            Text(viewModel.getCurrentTimeString())
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
             Text("Sunset: \(viewModel.getSunsetString())")
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
@@ -112,6 +112,7 @@ struct Daylight: View {
             Text("Location: \(LocationManager.shared.locationData.locationName)")
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
         }
+        .font(.system(size: 18, design: .serif))
         
     }
 }

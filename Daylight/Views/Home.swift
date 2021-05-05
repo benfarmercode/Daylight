@@ -30,9 +30,6 @@ struct Home: View {
                         .transition(.opacity)
                 }
             }
-//            else{
-//                Text("Waiting for location services...")
-//            }
         }
     }
     

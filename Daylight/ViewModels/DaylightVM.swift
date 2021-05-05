@@ -30,17 +30,6 @@ extension Daylight{
             
             self.timeData.currentTime = Date().addingTimeInterval(timeShift)
             (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
-            
-            _ = getEndAngle()
-            
-            /* APPGROUP */
-//            if let encode = try? JSONEncoder().encode(self.timeData) {
-//                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "timeData")
-//                logger.info("TimeData stored to user defaults")
-//            } else {
-//                logger.notice("TimeData not stored to user defaults")
-//            }
-//            WidgetCenter.shared.reloadAllTimelines()
         }
         
         func updateEndAngle(){
@@ -102,29 +91,7 @@ extension Daylight{
             logger.info("Elapsed Daylight Percent = \(percent)")
             return percent
         }
-    
-        func getEndAngle() -> Double{
-            var endAngle = (2 * Double.pi * (getPercentDaylightElapsed() / 100)) - Double.pi * 0.5
-            
-            // prevent more than 1 rotation of end angle.
-            // force endAngle = startAngle if first rotation complete.
-            if endAngle > (3 * Double.pi / 2){
-                endAngle = -Double.pi * 0.5
-            }
-            logger.info("Daylight EndAngle = \(endAngle)")
-            
-            /* APPGROUP */
-//            if let encode = try? JSONEncoder().encode(endAngle) {
-//                UserDefaults(suiteName:suiteName)!.set(encode, forKey: "endAngle")
-//            } else {
-//                logger.notice("EndAngle not stored to user defaults")
-//            }
-            
-            /*  */
-            
-            return endAngle
-        }
-        
+
         func reloadWidgets(){
             WidgetCenter.shared.reloadAllTimelines()
         }

@@ -98,7 +98,7 @@ struct Nighttime: View {
         VStack{
             Text("Sunset: \(viewModel.getSunsetString())")
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
-            Text("Current Time: \(viewModel.getCurrentTimeString())")
+            Text(viewModel.getCurrentTimeString())
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
             Text("Sunrise: \(viewModel.getSunriseString())")
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
@@ -106,6 +106,7 @@ struct Nighttime: View {
             Text("Location: \(LocationManager.shared.locationData.locationName)")
                 .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
         }
+        .font(.system(size: 18, design: .serif))
     }
 }
 
