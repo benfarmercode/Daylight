@@ -32,6 +32,7 @@ struct Daylight: View {
         .onAppear{
             viewModel.setup()
             viewModel.reloadWidgets()
+  
         }
         .onDisappear{
             timer.upstream.connect().cancel()

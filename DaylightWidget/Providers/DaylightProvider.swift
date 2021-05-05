@@ -37,7 +37,7 @@ struct DaylightProvider: TimelineProvider {
         }
         
         else{
-         //   homeViewModel.checkIsDaytime()
+            homeViewModel.checkIsDaytime()
             if homeViewModel.isDaytime{
                 isDaytime = true
                 daylightViewModel.updateTimeData()
