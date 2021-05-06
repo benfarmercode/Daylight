@@ -28,6 +28,7 @@ struct CircleFull: View{
     var body: some View{
         GeometryReader{ geometry in
             Path{path in
+                
                 if forWidget{
                     var x: Int
                     var y: Int
@@ -89,6 +90,7 @@ struct CircleSlice: View{
     var body: some View{
         GeometryReader{geometry in
             Path{path in
+                
                 if forWidget{
                     var x: Int
                     var y: Int

@@ -8,7 +8,6 @@
 import WidgetKit
 
 struct DaylightProvider: TimelineProvider {
-    
     var homeViewModel = Home.ViewModel()
     var daylightViewModel = Daylight.ViewModel()
     var nighttimeViewModel = Nighttime.ViewModel()
