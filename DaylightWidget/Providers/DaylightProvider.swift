@@ -13,8 +13,15 @@ struct DaylightProvider: TimelineProvider {
     var daylightViewModel = Daylight.ViewModel()
     var nighttimeViewModel = Nighttime.ViewModel()
     
+    private let placeholderEntry = DaylightEntry(
+        date: Date(),
+        isDaytime: true,
+        endAngle: Double.pi * 0.5,
+        currentTime: "12:18 PM",
+        sunrise: "6:40 AM",
+        sunset: "8:08 PM"
+    )
     
-    private let placeholderEntry = DaylightEntry(date: Date(), isDaytime: true, endAngle: Double.pi * 0.5, timeData: TimeData())
     //dummy entry when widget is loading the data
     func placeholder(in context: Context) -> DaylightEntry {
         return placeholderEntry
@@ -31,6 +38,9 @@ struct DaylightProvider: TimelineProvider {
         var isDaytime = true
         var endAngle = Double.pi * 0.5
         var timeData = TimeData()
+        var currentTime: String = ""
+        var sunset: String = ""
+        var sunrise:String = ""
         
         if !homeViewModel.locationServiceComplete{
             homeViewModel.runLocationService()
@@ -42,6 +52,9 @@ struct DaylightProvider: TimelineProvider {
                 isDaytime = true
                 daylightViewModel.updateTimeData()
                 daylightViewModel.updateEndAngle()
+                currentTime = daylightViewModel.getCurrentTimeString()
+                sunrise = daylightViewModel.getSunriseString()
+                sunset = daylightViewModel.getSunriseString()
                 timeData = daylightViewModel.timeData
                 endAngle = daylightViewModel.endAngle
                 
@@ -50,11 +63,23 @@ struct DaylightProvider: TimelineProvider {
                 isDaytime = false
                 nighttimeViewModel.updateTimeData()
                 nighttimeViewModel.updateEndAngle()
+                currentTime = nighttimeViewModel.getCurrentTimeString()
+                sunrise = nighttimeViewModel.getSunriseString()
+                sunset = nighttimeViewModel.getSunriseString()
                 timeData = nighttimeViewModel.timeData
                 endAngle = nighttimeViewModel.endAngle
             }
             let currentDate = Date()
-            let entry = DaylightEntry(date: currentDate, isDaytime: isDaytime, endAngle: endAngle, timeData: timeData)
+            
+            let entry = DaylightEntry(
+                date: currentDate,
+                isDaytime: isDaytime,
+                endAngle: endAngle,
+                currentTime: currentTime,
+                sunrise: sunrise,
+                sunset: sunset
+            )
+            
             entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .atEnd)
             

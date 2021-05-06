@@ -10,8 +10,8 @@
 		272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272290AF263FBBD0006DC4C3 /* NTSolar.swift */; };
 		272C208E263411FB00C929B8 /* Nighttime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C208D263411FB00C929B8 /* Nighttime.swift */; };
 		272C20932634151800C929B8 /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
-		273448862643524000FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
-		2734488F2643527100FFBB8C /* WidsetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidsetSizes.swift */; };
+		273448862643524000FFBB8C /* WidgetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidgetSizes.swift */; };
+		2734488F2643527100FFBB8C /* WidgetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidgetSizes.swift */; };
 		273448992643575000FFBB8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273448982643575000FFBB8C /* Assets.xcassets */; };
 		27540001263347F200885193 /* Daylight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27540000263347F200885193 /* Daylight.swift */; };
 		27540010263357A600885193 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754000F263357A600885193 /* HomeVM.swift */; };
@@ -24,6 +24,9 @@
 		2754FFDD26333DD900885193 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFDC26333DD900885193 /* LocationData.swift */; };
 		2754FFF32633441100885193 /* DaylightVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFF22633441100885193 /* DaylightVM.swift */; };
 		277C79C6263E8F4500334D7F /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C79C5263E8F4500334D7F /* Shapes.swift */; };
+		2799D0692643D7BD004B97C1 /* WidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0682643D7BD004B97C1 /* WidgetSmall.swift */; };
+		2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */; };
+		2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0742643D7CD004B97C1 /* WidgetLarge.swift */; };
 		27CF4E8E26405C5A00BA71BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */; };
 		27CF4E9026405C5A00BA71BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */; };
 		27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */; };
@@ -91,7 +94,7 @@
 		272290AF263FBBD0006DC4C3 /* NTSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTSolar.swift; sourceTree = "<group>"; };
 		272C208D263411FB00C929B8 /* Nighttime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nighttime.swift; sourceTree = "<group>"; };
 		272C20922634151800C929B8 /* NighttimeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NighttimeVM.swift; sourceTree = "<group>"; };
-		273448852643524000FFBB8C /* WidsetSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidsetSizes.swift; sourceTree = "<group>"; };
+		273448852643524000FFBB8C /* WidgetSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSizes.swift; sourceTree = "<group>"; };
 		273448982643575000FFBB8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27540000263347F200885193 /* Daylight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daylight.swift; sourceTree = "<group>"; };
 		2754000F263357A600885193 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
@@ -108,6 +111,9 @@
 		2754FFDC26333DD900885193 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		2754FFF22633441100885193 /* DaylightVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightVM.swift; sourceTree = "<group>"; };
 		277C79C5263E8F4500334D7F /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		2799D0682643D7BD004B97C1 /* WidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSmall.swift; sourceTree = "<group>"; };
+		2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMedium.swift; sourceTree = "<group>"; };
+		2799D0742643D7CD004B97C1 /* WidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLarge.swift; sourceTree = "<group>"; };
 		27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DaylightWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -154,14 +160,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		273448842643522F00FFBB8C /* WidgetSizes */ = {
-			isa = PBXGroup;
-			children = (
-				273448852643524000FFBB8C /* WidsetSizes.swift */,
-			);
-			path = WidgetSizes;
-			sourceTree = "<group>";
-		};
 		2754003226339DF200885193 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +244,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2799D07A2643D90A004B97C1 /* WidgetSizes */ = {
+			isa = PBXGroup;
+			children = (
+				273448852643524000FFBB8C /* WidgetSizes.swift */,
+			);
+			path = WidgetSizes;
+			sourceTree = "<group>";
+		};
 		27CF4E8C26405C5A00BA71BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,10 +264,10 @@
 		27CF4E9126405C5A00BA71BE /* DaylightWidget */ = {
 			isa = PBXGroup;
 			children = (
-				273448842643522F00FFBB8C /* WidgetSizes */,
-				27CF4EA4264061DC00BA71BE /* WidgetView */,
-				27CF4EA3264061D400BA71BE /* Providers */,
 				27CF4EA2264061CD00BA71BE /* Entries */,
+				27CF4EA3264061D400BA71BE /* Providers */,
+				27CF4EA4264061DC00BA71BE /* WidgetView */,
+				2799D07A2643D90A004B97C1 /* WidgetSizes */,
 				27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */,
 				273448982643575000FFBB8C /* Assets.xcassets */,
 				27CF4E9626405C5B00BA71BE /* Info.plist */,
@@ -289,6 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				27CF4EB52640626E00BA71BE /* DaylightWidgetView.swift */,
+				2799D0682643D7BD004B97C1 /* WidgetSmall.swift */,
+				2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */,
+				2799D0742643D7CD004B97C1 /* WidgetLarge.swift */,
 			);
 			path = WidgetView;
 			sourceTree = "<group>";
@@ -476,7 +485,7 @@
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
 				2754003426339E3700885193 /* LocationManager.swift in Sources */,
 				2754FFDD26333DD900885193 /* LocationData.swift in Sources */,
-				273448862643524000FFBB8C /* WidsetSizes.swift in Sources */,
+				273448862643524000FFBB8C /* WidgetSizes.swift in Sources */,
 				27CF4F3426407B2900BA71BE /* Extensions.swift in Sources */,
 				277C79C6263E8F4500334D7F /* Shapes.swift in Sources */,
 				27540001263347F200885193 /* Daylight.swift in Sources */,
@@ -511,11 +520,14 @@
 				27CF4F13264069D700BA71BE /* NighttimeVM.swift in Sources */,
 				27CF4ECB2640661600BA71BE /* DaylightEntry.swift in Sources */,
 				27CF4F18264069DC00BA71BE /* NTSolar.swift in Sources */,
-				2734488F2643527100FFBB8C /* WidsetSizes.swift in Sources */,
+				2734488F2643527100FFBB8C /* WidgetSizes.swift in Sources */,
+				2799D0692643D7BD004B97C1 /* WidgetSmall.swift in Sources */,
+				2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */,
 				27CF4EFA264069C200BA71BE /* LocationManager.swift in Sources */,
 				27CF4F1D264069F200BA71BE /* LocationData.swift in Sources */,
 				27CF4EEB264067AB00BA71BE /* TimeData.swift in Sources */,
 				27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */,
+				2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */,
 				27CF4F3926407B3300BA71BE /* Globals.swift in Sources */,
 				27CF4EF02640699300BA71BE /* Daylight.swift in Sources */,
 				27CF4F3E26407B3500BA71BE /* Extensions.swift in Sources */,
