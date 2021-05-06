@@ -27,6 +27,7 @@
 		2799D0692643D7BD004B97C1 /* WidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0682643D7BD004B97C1 /* WidgetSmall.swift */; };
 		2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */; };
 		2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0742643D7CD004B97C1 /* WidgetLarge.swift */; };
+		2799D0C826445CC5004B97C1 /* DaylightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0C726445CC5004B97C1 /* DaylightTests.swift */; };
 		27CF4E8E26405C5A00BA71BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */; };
 		27CF4E9026405C5A00BA71BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */; };
 		27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */; };
@@ -53,14 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2754FFA02633337A00885193 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2754FF862633337900885193 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2754FF8D2633337900885193;
-			remoteInfo = Daylight;
-		};
-		2754FFAB2633337A00885193 /* PBXContainerItemProxy */ = {
+		2799D0CA26445CC5004B97C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2754FF862633337900885193 /* Project object */;
 			proxyType = 1;
@@ -104,8 +98,6 @@
 		2754FF952633337A00885193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2754FF982633337A00885193 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2754FF9A2633337A00885193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2754FF9F2633337A00885193 /* DaylightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaylightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2754FFAA2633337A00885193 /* DaylightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaylightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2754FFC12633344D00885193 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		2754FFCE26333C5800885193 /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		2754FFDC26333DD900885193 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
@@ -114,6 +106,9 @@
 		2799D0682643D7BD004B97C1 /* WidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSmall.swift; sourceTree = "<group>"; };
 		2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMedium.swift; sourceTree = "<group>"; };
 		2799D0742643D7CD004B97C1 /* WidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLarge.swift; sourceTree = "<group>"; };
+		2799D0C526445CC5004B97C1 /* DaylightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaylightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2799D0C726445CC5004B97C1 /* DaylightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightTests.swift; sourceTree = "<group>"; };
+		2799D0C926445CC5004B97C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DaylightWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -134,14 +129,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2754FF9C2633337A00885193 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2754FFA72633337A00885193 /* Frameworks */ = {
+		2799D0C226445CC5004B97C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -174,6 +162,7 @@
 			children = (
 				2754FF902633337900885193 /* Daylight */,
 				27CF4E9126405C5A00BA71BE /* DaylightWidget */,
+				2799D0C626445CC5004B97C1 /* DaylightTests */,
 				27CF4E8C26405C5A00BA71BE /* Frameworks */,
 				2754FF8F2633337900885193 /* Products */,
 			);
@@ -183,9 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				2754FF8E2633337900885193 /* Daylight.app */,
-				2754FF9F2633337A00885193 /* DaylightTests.xctest */,
-				2754FFAA2633337A00885193 /* DaylightUITests.xctest */,
 				27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */,
+				2799D0C526445CC5004B97C1 /* DaylightTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +238,15 @@
 				273448852643524000FFBB8C /* WidgetSizes.swift */,
 			);
 			path = WidgetSizes;
+			sourceTree = "<group>";
+		};
+		2799D0C626445CC5004B97C1 /* DaylightTests */ = {
+			isa = PBXGroup;
+			children = (
+				2799D0C726445CC5004B97C1 /* DaylightTests.swift */,
+				2799D0C926445CC5004B97C1 /* Info.plist */,
+			);
+			path = DaylightTests;
 			sourceTree = "<group>";
 		};
 		27CF4E8C26405C5A00BA71BE /* Frameworks */ = {
@@ -335,41 +332,23 @@
 			productReference = 2754FF8E2633337900885193 /* Daylight.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2754FF9E2633337A00885193 /* DaylightTests */ = {
+		2799D0C426445CC5004B97C1 /* DaylightTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2754FFB62633337A00885193 /* Build configuration list for PBXNativeTarget "DaylightTests" */;
+			buildConfigurationList = 2799D0CC26445CC5004B97C1 /* Build configuration list for PBXNativeTarget "DaylightTests" */;
 			buildPhases = (
-				2754FF9B2633337A00885193 /* Sources */,
-				2754FF9C2633337A00885193 /* Frameworks */,
-				2754FF9D2633337A00885193 /* Resources */,
+				2799D0C126445CC5004B97C1 /* Sources */,
+				2799D0C226445CC5004B97C1 /* Frameworks */,
+				2799D0C326445CC5004B97C1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2754FFA12633337A00885193 /* PBXTargetDependency */,
+				2799D0CB26445CC5004B97C1 /* PBXTargetDependency */,
 			);
 			name = DaylightTests;
 			productName = DaylightTests;
-			productReference = 2754FF9F2633337A00885193 /* DaylightTests.xctest */;
+			productReference = 2799D0C526445CC5004B97C1 /* DaylightTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2754FFA92633337A00885193 /* DaylightUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2754FFB92633337A00885193 /* Build configuration list for PBXNativeTarget "DaylightUITests" */;
-			buildPhases = (
-				2754FFA62633337A00885193 /* Sources */,
-				2754FFA72633337A00885193 /* Frameworks */,
-				2754FFA82633337A00885193 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2754FFAC2633337A00885193 /* PBXTargetDependency */,
-			);
-			name = DaylightUITests;
-			productName = DaylightUITests;
-			productReference = 2754FFAA2633337A00885193 /* DaylightUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		27CF4E8A26405C5A00BA71BE /* DaylightWidgetExtension */ = {
 			isa = PBXNativeTarget;
@@ -400,11 +379,7 @@
 					2754FF8D2633337900885193 = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					2754FF9E2633337A00885193 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 2754FF8D2633337900885193;
-					};
-					2754FFA92633337A00885193 = {
+					2799D0C426445CC5004B97C1 = {
 						CreatedOnToolsVersion = 12.3;
 						TestTargetID = 2754FF8D2633337900885193;
 					};
@@ -429,9 +404,8 @@
 			projectRoot = "";
 			targets = (
 				2754FF8D2633337900885193 /* Daylight */,
-				2754FF9E2633337A00885193 /* DaylightTests */,
-				2754FFA92633337A00885193 /* DaylightUITests */,
 				27CF4E8A26405C5A00BA71BE /* DaylightWidgetExtension */,
+				2799D0C426445CC5004B97C1 /* DaylightTests */,
 			);
 		};
 /* End PBXProject section */
@@ -446,14 +420,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2754FF9D2633337A00885193 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2754FFA82633337A00885193 /* Resources */ = {
+		2799D0C326445CC5004B97C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -494,17 +461,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2754FF9B2633337A00885193 /* Sources */ = {
+		2799D0C126445CC5004B97C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2754FFA62633337A00885193 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				2799D0C826445CC5004B97C1 /* DaylightTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,15 +500,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2754FFA12633337A00885193 /* PBXTargetDependency */ = {
+		2799D0CB26445CC5004B97C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2754FF8D2633337900885193 /* Daylight */;
-			targetProxy = 2754FFA02633337A00885193 /* PBXContainerItemProxy */;
-		};
-		2754FFAC2633337A00885193 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2754FF8D2633337900885193 /* Daylight */;
-			targetProxy = 2754FFAB2633337A00885193 /* PBXContainerItemProxy */;
+			targetProxy = 2799D0CA26445CC5004B97C1 /* PBXContainerItemProxy */;
 		};
 		27CF4E9826405C5B00BA71BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -719,15 +675,13 @@
 			};
 			name = Release;
 		};
-		2754FFB72633337A00885193 /* Debug */ = {
+		2799D0CD26445CC5004B97C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ST356LZYW4;
 				INFOPLIST_FILE = DaylightTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,15 +695,13 @@
 			};
 			name = Debug;
 		};
-		2754FFB82633337A00885193 /* Release */ = {
+		2799D0CE26445CC5004B97C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ST356LZYW4;
 				INFOPLIST_FILE = DaylightTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -760,46 +712,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daylight.app/Daylight";
-			};
-			name = Release;
-		};
-		2754FFBA2633337A00885193 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ST356LZYW4;
-				INFOPLIST_FILE = DaylightUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.DaylightUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Daylight;
-			};
-			name = Debug;
-		};
-		2754FFBB2633337A00885193 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ST356LZYW4;
-				INFOPLIST_FILE = DaylightUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.DaylightUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Daylight;
 			};
 			name = Release;
 		};
@@ -866,20 +778,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2754FFB62633337A00885193 /* Build configuration list for PBXNativeTarget "DaylightTests" */ = {
+		2799D0CC26445CC5004B97C1 /* Build configuration list for PBXNativeTarget "DaylightTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2754FFB72633337A00885193 /* Debug */,
-				2754FFB82633337A00885193 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2754FFB92633337A00885193 /* Build configuration list for PBXNativeTarget "DaylightUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2754FFBA2633337A00885193 /* Debug */,
-				2754FFBB2633337A00885193 /* Release */,
+				2799D0CD26445CC5004B97C1 /* Debug */,
+				2799D0CE26445CC5004B97C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
