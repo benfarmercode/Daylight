@@ -12,29 +12,71 @@ import WidgetKit
 
 extension Daylight{
     class ViewModel: ObservableObject{
-        let logger = Logger(subsystem: subsystem!, category: "DaylightVM")
-        let calendar = Calendar.current
-        @Published var timeData = TimeData()
+        //MARK: PUBLIC
+        @Published var currentTime = ""
+        @Published var sunrise = ""
+        @Published var sunset = ""
+        @Published var remainingDaylight = ""
         @Published var endAngle = Double.pi * 0.5
         
         func setup(){
-            updateTimeData()
-            updateEndAngle()
-            logger.info("Daylight CurrentTime: \(self.timeData.currentTime)")
-            logger.info("Daylight Sunset: \(self.timeData.sunset)")
-            logger.info("Daylight Sunrise: \(self.timeData.sunrise)")
+            update()
+            logger.info("Daylight View Model setup complete.")
         }
         
-        func updateTimeData(){
+        func update(){
+            setTimeData()
+            setTimeDataStrings()
+            setEndAngle()
+            logger.info("Daylight View Model updated.")
+        }
+        
+        func reloadWidgets(){
+            WidgetCenter.shared.reloadAllTimelines()
+            logger.info("Daylight Widgets reloaded.")
+        }
+        
+        //MARK: PRIVATE
+        private let logger = Logger(subsystem: subsystem!, category: "DaylightVM")
+        private let calendar = Calendar.current
+        private var timeData = TimeData()
+        
+        private func setTimeData(){
             let timeShift = Double(60 * 60 * globalHourShift)
             
             self.timeData.currentTime = Date().addingTimeInterval(timeShift)
-            (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(forDate: self.timeData.currentTime, atLocation: LocationManager.shared.locationData.coordinates, inTimeZone: TimeZone.current) ?? (Date(), Date())
+            (self.timeData.sunrise, self.timeData.sunset) = NTSolar.sunRiseAndSet(
+                forDate: self.timeData.currentTime,
+                atLocation: LocationManager.shared.locationData.coordinates,
+                inTimeZone: TimeZone.current
+            ) ?? (Date(), Date())
+            
+            
+            logger.info("Daylight TimeData.CurrentTime: \(self.timeData.currentTime)")
+            logger.info("Daylight TimeData.Sunset: \(self.timeData.sunset)")
+            logger.info("Daylight TimeData.Sunrise: \(self.timeData.sunrise)")
         }
         
-        func updateEndAngle(){
-            self.endAngle = (2 * Double.pi * (getPercentDaylightElapsed() / 100)) - Double.pi * 0.5
+        private func setTimeDataStrings(){
+            self.currentTime = getTimeStringFromDate(timeData.currentTime)
+            self.sunrise = getTimeStringFromDate(timeData.sunrise)
+            self.sunset = getTimeStringFromDate(timeData.sunset)
             
+            logger.info("Daylight CurrentTime: \(self.currentTime)")
+            logger.info("Daylight Sunset: \(self.sunset)")
+            logger.info("Daylight Sunrise: \(self.sunrise)")
+            
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.hour, .minute]
+            formatter.unitsStyle = .positional
+            
+            let timeRemaining = getTotalDaylightInterval() - getElapsedDaylightInterval()
+            self.remainingDaylight = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
+            logger.info("Remaining Daylight = \(self.remainingDaylight)")
+        }
+        
+        private func setEndAngle(){
+            self.endAngle = (2 * Double.pi * (getPercentDaylightElapsed() / 100)) - Double.pi * 0.5
             // prevent more than 1 rotation of end angle.
             // force endAngle = startAngle if first rotation complete.
             if self.endAngle > (3 * Double.pi / 2){
@@ -42,36 +84,14 @@ extension Daylight{
             }
             logger.info("Daylight EndAngle = \(self.endAngle)")
         }
-    
-        func getSunriseString() -> String {
-            return getTimeStringFromDate(self.timeData.sunrise)
-        }
-    
-        func getSunsetString() -> String{
-            return getTimeStringFromDate(self.timeData.sunset)
-        }
-    
-        func getCurrentTimeString() -> String{
-            return getTimeStringFromDate(self.timeData.currentTime)
-        }
-    
-        func getTimeStringFromDate(_ dateObject: Date) -> String{
-            let formatter = DateFormatter()
-            formatter.timeStyle = .short
-            return formatter.string(from: dateObject)
-        }
-        func getSecondsBetweenDates(from earlierDate: Date, to laterDate: Date) -> Int{
-            let components = calendar.dateComponents([.second],from: earlierDate, to: laterDate)
-            return components.second ?? 0
-        }
-    
-        func getTotalDaylightInterval() -> Int{
+        
+        private func getTotalDaylightInterval() -> Int{
             let totalDaylight = getSecondsBetweenDates(from: self.timeData.sunrise, to: self.timeData.sunset)
             logger.info("Total Daylight = \(totalDaylight)")
             return totalDaylight
         }
-    
-        func getElapsedDaylightInterval() -> Int{
+        
+        private func getElapsedDaylightInterval() -> Int{
             var elapsedTime = getSecondsBetweenDates(from: self.timeData.sunrise, to: self.timeData.currentTime)
             logger.info("Elapsed Daylight = \(elapsedTime)")
             
@@ -85,15 +105,23 @@ extension Daylight{
             }
             return elapsedTime
         }
-    
-        func getPercentDaylightElapsed() -> Double{
+        
+        private func getPercentDaylightElapsed() -> Double{
             let percent = (Double(getElapsedDaylightInterval()) / Double(getTotalDaylightInterval())) * 100
             logger.info("Elapsed Daylight Percent = \(percent)")
             return percent
         }
-
-        func reloadWidgets(){
-            WidgetCenter.shared.reloadAllTimelines()
+        
+        private func getTimeStringFromDate(_ dateObject: Date) -> String{
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            return formatter.string(from: dateObject)
         }
+        
+        private func getSecondsBetweenDates(from earlierDate: Date, to laterDate: Date) -> Int{
+            let components = calendar.dateComponents([.second],from: earlierDate, to: laterDate)
+            return components.second ?? 0
+        }
+        
     }
 }

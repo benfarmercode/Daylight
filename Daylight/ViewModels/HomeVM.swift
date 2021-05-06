@@ -11,11 +11,9 @@ import WidgetKit
 
 extension Home{
     class ViewModel: ObservableObject{
-        let logger = Logger(subsystem: subsystem!, category: "HomeVM")
-//        var locationManager = LocationManager()
+        //MARK: PUBLIC
         @Published var locationServiceComplete = false
         @Published var isDaytime = true
-
         
         func runLocationService(){
             logger.info("Location service started.")
@@ -24,19 +22,11 @@ extension Home{
             }
         }
         
-        func getLocationName(){
-            logger.info("Resolving location name.")
-            LocationManager.shared.resolveLocationName(with: LocationManager.shared.locationData.location){[weak self]locationName in
-                self?.logger.info("Location name resolved!")
-                
-                self?.logger.info("Checking isDaytime.")
-                
-                self?.checkIsDaytime()
-                
-                self?.logger.info("Is Daytime - \(self?.isDaytime ?? true)!")
-                self?.locationServiceComplete = true
-                self?.logger.info("Location service complete!")
-            }
+        func scheduleMinuteChangeTimer(){
+            let calendar = Calendar(identifier: .gregorian)
+            let currentSeconds = calendar.dateComponents([.second], from: Date()).second
+            //schedule timer to trigger at the next minute change
+            let _ = Timer.scheduledTimer(timeInterval: Double(60 - (currentSeconds ?? 0)), target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         }
         
         func checkIsDaytime(){
@@ -62,27 +52,33 @@ extension Home{
             }
         }
         
-        func scheduleMinuteChangeTimer(){
-            let calendar = Calendar(identifier: .gregorian)
-            let currentSeconds = calendar.dateComponents([.second], from: Date()).second
-            print(currentSeconds ?? -1)
-            
-            //schedule timer to trigger at the next minute change
-            let _ = Timer.scheduledTimer(timeInterval: Double(60 - (currentSeconds ?? 0)), target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
+        //MARK: PRIVATE
+        private let logger = Logger(subsystem: subsystem!, category: "HomeVM")
+        
+        private func getLocationName(){
+            logger.info("Resolving location name.")
+            LocationManager.shared.resolveLocationName(with: LocationManager.shared.locationData.location){[weak self]locationName in
+                self?.logger.info("Location name resolved!")
+                
+                self?.logger.info("Checking isDaytime.")
+                
+                self?.checkIsDaytime()
+                
+                self?.logger.info("Is Daytime - \(self?.isDaytime ?? true)!")
+                self?.locationServiceComplete = true
+                self?.logger.info("Location service complete!")
+            }
         }
         
-        @objc func fireTimer(){
+        @objc private func fireTimer(){
             //schedule a repeating timer every 60 seconds to check if daytime or nighttime.
             let _ = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(checkIsDaytimeTimer), userInfo: nil, repeats: true)
             checkIsDaytime()
         }
         
-        @objc func checkIsDaytimeTimer(){
+        @objc private func checkIsDaytimeTimer(){
             checkIsDaytime()
         }
-        
-        
     }
-
 }
 

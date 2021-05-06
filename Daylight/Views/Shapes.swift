@@ -71,7 +71,6 @@ struct CircleFull: View{
         .fill(fillColor)
         .shadow(color: Color.black.opacity(0.1), radius: 20, x: 10, y: 10)
         .shadow(color: Color.white.opacity(0.1), radius: 20, x: -5, y: -5)
-        //(sunshadow had white opacity of 0.1)
     }
 }
 

@@ -32,28 +32,24 @@ struct Daylight: View {
         .onAppear{
             viewModel.setup()
             viewModel.reloadWidgets()
-  
         }
         .onDisappear{
             timer.upstream.connect().cancel()
         }
         .onReceive(timer) {_ in
-            viewModel.updateTimeData()
-            viewModel.updateEndAngle()
+            viewModel.update()
         }
     }
     
     var mainView: some View{
         ZStack{
             background
-            VStack{
-                sunGraphic
-                    .onTapGesture {
-                        withAnimation{
-                            clicked.toggle()
-                        }
+            sunGraphic
+                .onTapGesture {
+                    withAnimation{
+                        clicked.toggle()
                     }
-            }
+                }
         }
     }
     
@@ -70,7 +66,7 @@ struct Daylight: View {
                 sun
             }
             else {
-                percentIndicator
+                remainingTime
             }
         }
     }
@@ -83,36 +79,32 @@ struct Daylight: View {
         CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
     }
     
-    var percentIndicator: some View{
-        Text("\(String(format: "%.1f", 100-viewModel.getPercentDaylightElapsed()))%")
-            .font(.largeTitle)
-            .foregroundColor(Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ))
+    var remainingTime: some View{
+        VStack{
+            Text("\(viewModel.remainingDaylight) remains.")
+        }
+        .font(.system(size: 18, design: .serif))
+        .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
     }
     
     //TAB 2//***
     var infoView: some View{
         ZStack{
             background
-            VStack{
-                daylightInfo
-            }
+            daylightInfo
         }
     }
     
     
     var daylightInfo: some View{
         VStack{
-            Text("Sunrise: \(viewModel.getSunriseString())")
-                .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
-            Text(viewModel.getCurrentTimeString())
-                .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
-            Text("Sunset: \(viewModel.getSunsetString())")
-                .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+            Text("Sunrise: \(viewModel.sunrise)")
+            Text("Sunset: \(viewModel.sunset)")
             Text("")
             Text("Location: \(LocationManager.shared.locationData.locationName)")
-                .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
         }
         .font(.system(size: 18, design: .serif))
+        .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
     }
 }
 

@@ -22,7 +22,7 @@ class DaylightTests: XCTestCase {
         let hourShift = globalHourShift
         let calendar = Calendar.current
         
-        viewModel.updateTimeData()
+        viewModel.update()
         let currentDate = Date().addingTimeInterval(Double(60 * 60 * hourShift))
         
         let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)

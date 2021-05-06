@@ -37,8 +37,7 @@ struct Nighttime: View {
             timer.upstream.connect().cancel()
         }
         .onReceive(timer) {_ in
-            viewModel.updateTimeData()
-            viewModel.updateEndAngle()
+            viewModel.update()
         }
     }
     
@@ -67,7 +66,7 @@ struct Nighttime: View {
                 moon
             }
             else {
-                percentIndicator
+                remainingTime
             }
         }
     }
@@ -80,10 +79,12 @@ struct Nighttime: View {
         CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
     }
 
-    var percentIndicator: some View{
-        Text("\(String(format: "%.1f", 100-viewModel.getPercentNighttimeElapsed()))%")
-            .font(.largeTitle)
-            .foregroundColor(Color(#colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1)))
+    var remainingTime: some View{
+        VStack{
+            Text("\(viewModel.remainingNighttime) remains.")
+        }
+        .font(.system(size: 18, design: .serif))
+        .foregroundColor(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ))
     }
     
     //TAB 2//***
@@ -96,17 +97,13 @@ struct Nighttime: View {
     
     var nighttimeInfo: some View{
         VStack{
-            Text("Sunset: \(viewModel.getSunsetString())")
-                .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
-            Text(viewModel.getCurrentTimeString())
-                .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
-            Text("Sunrise: \(viewModel.getSunriseString())")
-                .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
+            Text("Sunset: \(viewModel.sunset)")
+            Text("Sunrise: \(viewModel.sunrise)")
             Text("")
             Text("Location: \(LocationManager.shared.locationData.locationName)")
-                .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
         }
         .font(.system(size: 18, design: .serif))
+        .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
     }
 }
 

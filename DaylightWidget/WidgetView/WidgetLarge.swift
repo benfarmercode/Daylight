@@ -48,7 +48,7 @@ struct WidgetLarge: View{
                 VStack{
                     ZStack{
                         CircleFull(radius: 96, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: true, widgetType: .large)
-                        CircleSlice(radius: 96, endAngle: entry.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: true, widgetType: .large)
+                        CircleSlice(radius: 96, endAngle: entry.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.02, forWidget: true, widgetType: .large)
                     }
                     HStack{
                         Text("Sunset: \(entry.sunset)")

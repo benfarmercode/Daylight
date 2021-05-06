@@ -15,5 +15,4 @@ struct DaylightEntry: TimelineEntry {
     let currentTime: String
     let sunrise: String
     let sunset: String
-   // let timeData: TimeData
 }

@@ -37,7 +37,6 @@ struct DaylightProvider: TimelineProvider {
         
         var isDaytime = true
         var endAngle = Double.pi * 0.5
-        var timeData = TimeData()
         var currentTime: String = ""
         var sunset: String = ""
         var sunrise:String = ""
@@ -50,23 +49,19 @@ struct DaylightProvider: TimelineProvider {
             homeViewModel.checkIsDaytime()
             if homeViewModel.isDaytime{
                 isDaytime = true
-                daylightViewModel.updateTimeData()
-                daylightViewModel.updateEndAngle()
-                currentTime = daylightViewModel.getCurrentTimeString()
-                sunrise = daylightViewModel.getSunriseString()
-                sunset = daylightViewModel.getSunsetString()
-                timeData = daylightViewModel.timeData
+                daylightViewModel.update()
+                currentTime = daylightViewModel.currentTime
+                sunrise = daylightViewModel.sunrise
+                sunset = daylightViewModel.sunset
                 endAngle = daylightViewModel.endAngle
                 
             }
             else{
                 isDaytime = false
-                nighttimeViewModel.updateTimeData()
-                nighttimeViewModel.updateEndAngle()
-                currentTime = nighttimeViewModel.getCurrentTimeString()
-                sunrise = nighttimeViewModel.getSunriseString()
-                sunset = nighttimeViewModel.getSunsetString()
-                timeData = nighttimeViewModel.timeData
+                nighttimeViewModel.update()
+                currentTime = nighttimeViewModel.currentTime
+                sunrise = nighttimeViewModel.sunrise
+                sunset = nighttimeViewModel.sunset
                 endAngle = nighttimeViewModel.endAngle
             }
             let currentDate = Date()

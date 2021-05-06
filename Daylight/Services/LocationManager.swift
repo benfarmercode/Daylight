@@ -9,20 +9,11 @@ import CoreLocation
 import os.log
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
-    let logger = Logger(subsystem: subsystem!, category: "LocationManager")
+    //MARK: PUBLIC
     static var shared = LocationManager()
     let manager = CLLocationManager()
     var updateLocationCompletion: ((CLLocation) -> Void)?
-
-    
     var locationData = LocationData()
-    
-    func getUserLocation(completion: @escaping ((CLLocation) -> Void)){
-        self.updateLocationCompletion = completion
-        manager.requestWhenInUseAuthorization()
-        manager.delegate = self
-        manager.startUpdatingLocation()
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else{
@@ -33,13 +24,18 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         self.locationData.coordinates = location.coordinate
         
         logger.info("Location: \(location)")
-       // print("~LocationManager: Location: \(location)")
         updateLocationCompletion?(location)
         manager.stopUpdatingLocation()
     }
     
+    func getUserLocation(completion: @escaping ((CLLocation) -> Void)){
+        self.updateLocationCompletion = completion
+        manager.requestWhenInUseAuthorization()
+        manager.delegate = self
+        manager.startUpdatingLocation()
+    }
+    
     func resolveLocationName(with location: CLLocation, completion: @escaping ((String?) -> Void)){
-        
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location, preferredLocale: .current){ placemarks, error in
             guard let place = placemarks?.first, error == nil
@@ -64,4 +60,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             completion(name)
         }
     }
+    
+    //MARK: PRIVATE
+    private let logger = Logger(subsystem: subsystem!, category: "LocationManager")
 }
