@@ -14,42 +14,37 @@ struct Nighttime: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        // scrollview + frame used as workaround to TabView top edge ignore safe area bug
-        ScrollView{
-            TabView{
-                mainView
-                infoView
-            }
-            .frame(
-                width: UIScreen.main.bounds.width ,
-                height: UIScreen.main.bounds.height
-            )
-            .tabViewStyle(PageTabViewStyle())
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-        }
-        .edgesIgnoringSafeArea(.all)
-        .onAppear{
-            viewModel.setup()
-            viewModel.reloadWidgets()
-        }
-        .onDisappear{
-            timer.upstream.connect().cancel()
-        }
-        .onReceive(timer) {_ in
-            viewModel.update()
-        }
-    }
-    
-    var mainView: some View{
-        ZStack{
-            background
-            moonGraphic
-                .onTapGesture {
-                    withAnimation{
-                        clicked.toggle()
-                    }
+        GeometryReader{ geometry in
+            ZStack{
+                background
+                TabView{
+                    moonGraphic
+                        .onTapGesture {
+                            withAnimation{
+                                clicked.toggle()
+                            }
+                        }
+                    nighttimeInfo
                 }
+                .frame(
+                    width: geometry.size.width ,
+                    height: geometry.size.height
+                )
+                .tabViewStyle(PageTabViewStyle())
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .edgesIgnoringSafeArea(.all)
+                .onAppear{
+                    viewModel.setup()
+                    viewModel.reloadWidgets()
+                }
+                .onDisappear{
+                    timer.upstream.connect().cancel()
+                }
+                .onReceive(timer) {_ in
+                    viewModel.update()
+                }
+            }
         }
     }
     
@@ -57,7 +52,6 @@ struct Nighttime: View {
         BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.4169208705, green: 0.4877590537, blue: 0.6206590533, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.1882352941, green: 0.2039215686, blue: 0.2235294118, alpha: 0.9142765411) ))
     }
     
-    //TAB 1//***
     var moonGraphic: some View{
         ZStack{
             moonShadow
@@ -78,21 +72,13 @@ struct Nighttime: View {
     var moon: some View{
         CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
     }
-
+    
     var remainingTime: some View{
         VStack{
             Text("\(viewModel.remainingNighttime) remains.")
         }
         .font(.system(size: 18, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ))
-    }
-    
-    //TAB 2//***
-    var infoView: some View{
-        ZStack{
-            background
-            nighttimeInfo
-        }
     }
     
     var nighttimeInfo: some View{

@@ -14,42 +14,37 @@ struct Daylight: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        // scrollview + frame used as workaround to TabView top edge ignore safe area bug
-        ScrollView{
-            TabView{
-                mainView
-                infoView
-            }
-            .frame(
-                width: UIScreen.main.bounds.width ,
-                height: UIScreen.main.bounds.height
-            )
-            .tabViewStyle(PageTabViewStyle())
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-        }
-        .edgesIgnoringSafeArea(.all)
-        .onAppear{
-            viewModel.setup()
-            viewModel.reloadWidgets()
-        }
-        .onDisappear{
-            timer.upstream.connect().cancel()
-        }
-        .onReceive(timer) {_ in
-            viewModel.update()
-        }
-    }
-    
-    var mainView: some View{
-        ZStack{
-            background
-            sunGraphic
-                .onTapGesture {
-                    withAnimation{
-                        clicked.toggle()
-                    }
+        GeometryReader{ geometry in
+            ZStack{
+                background
+                TabView{
+                    sunGraphic
+                        .onTapGesture {
+                            withAnimation{
+                                clicked.toggle()
+                            }
+                        }
+                    daylightInfo
                 }
+                .frame(
+                    width: geometry.size.width ,
+                    height: geometry.size.height
+                )
+                .tabViewStyle(PageTabViewStyle())
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .edgesIgnoringSafeArea(.all)
+                .onAppear{
+                    viewModel.setup()
+                    viewModel.reloadWidgets()
+                }
+                .onDisappear{
+                    timer.upstream.connect().cancel()
+                }
+                .onReceive(timer) {_ in
+                    viewModel.update()
+                }
+            }
         }
     }
     
@@ -57,7 +52,6 @@ struct Daylight: View {
         BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
     }
     
-    //TAB 1//***
     var sunGraphic: some View{
         ZStack{
             sunShadow
@@ -86,15 +80,6 @@ struct Daylight: View {
         .font(.system(size: 18, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
     }
-    
-    //TAB 2//***
-    var infoView: some View{
-        ZStack{
-            background
-            daylightInfo
-        }
-    }
-    
     
     var daylightInfo: some View{
         VStack{

@@ -24,53 +24,55 @@ struct CircleFull: View{
     let widgetType: WidgetType?
     
     let widgetSizes = WidgetSizes()
-
+    
     var body: some View{
-        Path{path in
-            if forWidget{
-                var x: Int
-                var y: Int
-                (x,y) = widgetSizes.getWidgetSize(widgetType: widgetType ?? .small)
-                path.move(to:
-                            CGPoint(
-                                x: x / 2,
-                                y: y / 2
-                            )
-                )
-                path.addArc(
-                    center: CGPoint(
-                        x: x / 2,
-                        y: y / 2
-                    ),
-                    radius: radius,
-                    startAngle: .init(radians: Double.pi * 2 - 0.0001),
-                    endAngle: .init(radians: 0),
-                    clockwise: true
-                )
-            }
-            else {
-                path.move(to:
-                            CGPoint(
-                                x: UIScreen.main.bounds.width / 2,
-                                y: UIScreen.main.bounds.height / 2
-                            )
-                )
+        GeometryReader{ geometry in
+            Path{path in
+                if forWidget{
+                    var x: Int
+                    var y: Int
+                    (x,y) = widgetSizes.getWidgetSize(widgetType: widgetType ?? .small)
+                    path.move(to:
+                                CGPoint(
+                                    x: x / 2,
+                                    y: y / 2
+                                )
+                    )
+                    path.addArc(
+                        center: CGPoint(
+                            x: x / 2,
+                            y: y / 2
+                        ),
+                        radius: radius,
+                        startAngle: .init(radians: Double.pi * 2 - 0.0001),
+                        endAngle: .init(radians: 0),
+                        clockwise: true
+                    )
+                }
+                else {
+                    path.move(to:
+                                CGPoint(
+                                    x: geometry.size.width / 2,
+                                    y: geometry.size.height / 2
+                                )
+                    )
+                    
+                    path.addArc(
+                        center: CGPoint(
+                            x: geometry.size.width / 2,
+                            y: geometry.size.height / 2 ),
+                        radius: radius,
+                        startAngle: .init(radians: Double.pi * 2 - 0.0001),
+                        endAngle: .init(radians: 0),
+                        clockwise: true
+                    )
+                }
                 
-                path.addArc(
-                    center: CGPoint(
-                        x: UIScreen.main.bounds.width / 2,
-                        y: UIScreen.main.bounds.height / 2 ),
-                    radius: radius,
-                    startAngle: .init(radians: Double.pi * 2 - 0.0001),
-                    endAngle: .init(radians: 0),
-                    clockwise: true
-                )
             }
-  
+            .fill(fillColor)
+            .shadow(color: Color.black.opacity(0.1), radius: 20, x: 10, y: 10)
+            .shadow(color: Color.white.opacity(0.1), radius: 20, x: -5, y: -5)
         }
-        .fill(fillColor)
-        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 10, y: 10)
-        .shadow(color: Color.white.opacity(0.1), radius: 20, x: -5, y: -5)
     }
 }
 
@@ -83,52 +85,54 @@ struct CircleSlice: View{
     let widgetType: WidgetType?
     
     let widgetSizes = WidgetSizes()
-
+    
     var body: some View{
-        Path{path in
-            if forWidget{
-                var x: Int
-                var y: Int
-                (x,y) = widgetSizes.getWidgetSize(widgetType: widgetType ?? .small)
-                path.move(to:
-                            CGPoint(
-                                x: x / 2,
-                                y: y / 2
-                            )
-                )
-                
-                path.addArc(
-                    center: CGPoint(
-                        x: x / 2,
-                        y: y / 2 ),
-                    radius: radius,
-                    startAngle: .init(radians: -Double.pi / 2),
-                    endAngle: .init(radians: endAngle),
-                    clockwise: true
-                )
+        GeometryReader{geometry in
+            Path{path in
+                if forWidget{
+                    var x: Int
+                    var y: Int
+                    (x,y) = widgetSizes.getWidgetSize(widgetType: widgetType ?? .small)
+                    path.move(to:
+                                CGPoint(
+                                    x: x / 2,
+                                    y: y / 2
+                                )
+                    )
+                    
+                    path.addArc(
+                        center: CGPoint(
+                            x: x / 2,
+                            y: y / 2 ),
+                        radius: radius,
+                        startAngle: .init(radians: -Double.pi / 2),
+                        endAngle: .init(radians: endAngle),
+                        clockwise: true
+                    )
+                }
+                else{
+                    path.move(to:
+                                CGPoint(
+                                    x: geometry.size.width / 2,
+                                    y: geometry.size.height / 2
+                                )
+                    )
+                    
+                    path.addArc(
+                        center: CGPoint(
+                            x: geometry.size.width / 2,
+                            y: geometry.size.height / 2 ),
+                        radius: radius,
+                        startAngle: .init(radians: -Double.pi / 2),
+                        endAngle: .init(radians: endAngle),
+                        clockwise: true
+                    )
+                }
             }
-            else{
-                path.move(to:
-                            CGPoint(
-                                x: UIScreen.main.bounds.width / 2,
-                                y: UIScreen.main.bounds.height / 2
-                            )
-                )
-                
-                path.addArc(
-                    center: CGPoint(
-                        x: UIScreen.main.bounds.width / 2,
-                        y: UIScreen.main.bounds.height / 2 ),
-                    radius: radius,
-                    startAngle: .init(radians: -Double.pi / 2),
-                    endAngle: .init(radians: endAngle),
-                    clockwise: true
-                )
-            }
+            .fill(fillColor)
+            .shadow(color: Color.black.opacity(0.1), radius: 40, x: 10, y: 10)
+            .shadow(color: Color.white.opacity(whiteShadowOpacity), radius: 15, x: -5, y: -5)
         }
-        .fill(fillColor)
-        .shadow(color: Color.black.opacity(0.1), radius: 40, x: 10, y: 10)
-        .shadow(color: Color.white.opacity(whiteShadowOpacity), radius: 15, x: -5, y: -5)
     }
 }
 
