@@ -113,7 +113,6 @@ struct Daylight: View {
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
         }
         .font(.system(size: 18, design: .serif))
-        
     }
 }
 

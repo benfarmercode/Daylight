@@ -30,12 +30,13 @@ struct Home: View {
                         .transition(.opacity)
                 }
             }
+            
         }
     }
     
     var background: some View{
-        RadialGradient(gradient: Gradient(colors: [ Color( #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) ), Color( #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1) )]), center: .center, startRadius: 2, endRadius: 312)
-            .ignoresSafeArea()
+        BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
+        
     }
 }
 

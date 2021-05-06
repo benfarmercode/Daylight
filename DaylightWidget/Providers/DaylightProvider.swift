@@ -54,7 +54,7 @@ struct DaylightProvider: TimelineProvider {
                 daylightViewModel.updateEndAngle()
                 currentTime = daylightViewModel.getCurrentTimeString()
                 sunrise = daylightViewModel.getSunriseString()
-                sunset = daylightViewModel.getSunriseString()
+                sunset = daylightViewModel.getSunsetString()
                 timeData = daylightViewModel.timeData
                 endAngle = daylightViewModel.endAngle
                 
@@ -65,7 +65,7 @@ struct DaylightProvider: TimelineProvider {
                 nighttimeViewModel.updateEndAngle()
                 currentTime = nighttimeViewModel.getCurrentTimeString()
                 sunrise = nighttimeViewModel.getSunriseString()
-                sunset = nighttimeViewModel.getSunriseString()
+                sunset = nighttimeViewModel.getSunsetString()
                 timeData = nighttimeViewModel.timeData
                 endAngle = nighttimeViewModel.endAngle
             }

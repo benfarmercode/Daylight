@@ -37,7 +37,6 @@ struct CircleFull: View{
                                 y: y / 2
                             )
                 )
-                
                 path.addArc(
                     center: CGPoint(
                         x: x / 2,
