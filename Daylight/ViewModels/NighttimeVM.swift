@@ -16,6 +16,7 @@ extension Nighttime{
         @Published var sunset = ""
         @Published var remainingNighttime = ""
         @Published var endAngle = Double.pi * 0.5
+        var totalNighttime = ""
         
         func setup(){
             update()
@@ -89,8 +90,12 @@ extension Nighttime{
             formatter.unitsStyle = .positional
             formatter.zeroFormattingBehavior = .pad
             
+            let totalTime = getTotalNighttimeInterval()
+            self.totalNighttime = formatter.string(from: TimeInterval(totalTime)) ?? ""
+            
             let timeRemaining = getTotalNighttimeInterval() - getElapsedNighttimeInterval()
             self.remainingNighttime = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
+            logger.info("Total Time = \(self.totalNighttime)")
             logger.info("Remaining Nighttime = \(self.remainingNighttime)")
         }
         

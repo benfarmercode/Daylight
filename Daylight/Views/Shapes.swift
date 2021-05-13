@@ -138,3 +138,138 @@ struct CircleSlice: View{
     }
 }
 
+struct CircleAnimationNight: View{
+    @StateObject var viewModel: Nighttime.ViewModel
+    @Environment(\.horizontalSizeClass) var sizeClass
+    @State var fill: CGFloat = 0.0
+    @State var moveAlongCircle = false
+    @State var animationComplete = false
+    
+    @Binding var isShowing: Bool
+    
+    var body: some View{
+        // Track Circle
+        ZStack{
+            Circle()
+                .stroke(Color.black.opacity(0.3),
+                        style: StrokeStyle(lineWidth: 30))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+            
+            // Animation Circle
+            Circle()
+                .trim(from: 0, to: self.fill)
+                .stroke(Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ),
+                        style: StrokeStyle(lineWidth: 30))
+                .rotationEffect(.init(degrees: -90))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+                .onAnimationCompleted(for: self.fill) {
+                    withAnimation{
+                        animationComplete = true
+                    }
+                }
+                .onAppear(perform: {
+                    withAnimation(Animation.easeInOut(duration: 1.5)){
+                        self.fill = 1.0
+                        self.moveAlongCircle.toggle()
+                    }
+                })
+            
+            Circle()
+                .fill(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ).opacity(Double(self.fill)))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+            
+            
+            Circle()
+                .fill(Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ))
+                .frame(width: globalScreenWidth * 0.15, height: globalScreenWidth * 0.15)
+                .offset(y: -globalScreenWidth * 0.35)
+                .rotationEffect(.degrees(moveAlongCircle ? 360 : 0))
+                .animation(Animation.easeInOut(duration: 1.5))
+            
+            if animationComplete{
+                Text("Total Night: \(viewModel.totalNighttime)")
+                    .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+                    .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
+            }
+            
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(Animation.default){
+                isShowing = false
+            }
+        }
+    }
+}
+
+struct CircleAnimationDay: View{
+    @StateObject var viewModel: Daylight.ViewModel
+    @Environment(\.horizontalSizeClass) var sizeClass
+    @State var fill: CGFloat = 0.0
+    @State var moveAlongCircle = false
+    @State var animationComplete = false
+    
+    @Binding var isShowing: Bool
+    
+    var body: some View{
+        // Track Circle
+        ZStack{
+            Circle()
+                .stroke(Color.black.opacity(0.3),
+                        style: StrokeStyle(lineWidth: 30))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+            
+            // Animation Circle
+            Circle()
+                .trim(from: 0, to: self.fill)
+                .stroke(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ),
+                        style: StrokeStyle(lineWidth: 30))
+                .rotationEffect(.init(degrees: -90))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+                .onAnimationCompleted(for: self.fill) {
+                    withAnimation{
+                        animationComplete = true
+                    }
+                }
+                .onAppear(perform: {
+                    withAnimation(Animation.easeInOut(duration: 1.5)){
+                        self.fill = 1.0
+                        self.moveAlongCircle.toggle()
+                    }
+                })
+            
+            //full sun
+            Circle()
+                .fill(Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ).opacity(Double(self.fill)))
+                .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
+            
+            //small circle
+            Circle()
+                .fill(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+                .frame(width: globalScreenWidth * 0.15, height: globalScreenWidth * 0.15)
+                .offset(y: -globalScreenWidth * 0.35)
+                .rotationEffect(.degrees(moveAlongCircle ? 360 : 0))
+                .animation(Animation.easeInOut(duration: 1.5))
+            
+            if animationComplete{
+                Text("Total Daylight: \(viewModel.totalDaylight)")
+                    .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+                    .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+            }
+            
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(Animation.default){
+                isShowing = false
+            }
+        }
+    }
+}
+
+struct Shapes_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleAnimationNight(viewModel: Nighttime.ViewModel(), isShowing: .constant(true))
+    }
+}
+

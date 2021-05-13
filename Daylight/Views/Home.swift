@@ -10,6 +10,7 @@ import SwiftUI
 struct Home: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
+    @State var viewAppeared = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -32,9 +33,15 @@ struct Home: View {
                 }
             }
             else{
-                Text("Please enable location services.")
-                    .foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
-                    .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+                if viewAppeared{
+                    Text("Please enable location services.")
+                        .foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
+                        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+                }
+            }
+        }.onAppear{
+            withAnimation(Animation.linear.delay(2)){
+                self.viewAppeared = true
             }
         }
     }

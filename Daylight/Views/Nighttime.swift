@@ -10,7 +10,8 @@ import SwiftUI
 struct Nighttime: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
-    @State var clicked = false
+    @State var showTimeRemaining = false
+    @State var showAnimatingView = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -18,13 +19,19 @@ struct Nighttime: View {
         GeometryReader{ geometry in
             ZStack{
                 background
+                
                 TabView{
                     moonGraphic
-                        .onTapGesture {
-                            withAnimation{
-                                clicked.toggle()
-                            }
+                    .onTapGesture {
+                        withAnimation{
+                            showTimeRemaining.toggle()
                         }
+                    }
+                    .onLongPressGesture {
+                        showAnimatingView.toggle()
+                        simpleSuccessHaptic()
+                    }
+                    
                     nighttimeInfo
                 }
                 .frame(
@@ -57,11 +64,15 @@ struct Nighttime: View {
         ZStack{
             moonShadow
             
-            if !clicked {
+            if !showTimeRemaining {
                 moon
             }
             else {
                 remainingTime
+            }
+            
+            if showAnimatingView{
+                CircleAnimationNight(viewModel: self.viewModel, isShowing: $showAnimatingView)
             }
         }
     }
@@ -94,6 +105,11 @@ struct Nighttime: View {
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
+    }
+    
+    func simpleSuccessHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 

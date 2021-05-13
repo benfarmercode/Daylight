@@ -18,6 +18,7 @@ extension Daylight{
         @Published var sunset = ""
         @Published var remainingDaylight = ""
         @Published var endAngle = Double.pi * 0.5
+        var totalDaylight = ""
         
         func setup(){
             update()
@@ -70,6 +71,10 @@ extension Daylight{
             formatter.allowedUnits = [.hour, .minute]
             formatter.unitsStyle = .positional
             formatter.zeroFormattingBehavior = .pad
+            
+            let totalTime = getTotalDaylightInterval()
+            self.totalDaylight = formatter.string(from: TimeInterval(totalTime)) ?? ""
+            
             let timeRemaining = getTotalDaylightInterval() - getElapsedDaylightInterval()
             self.remainingDaylight = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
             

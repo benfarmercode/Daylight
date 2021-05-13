@@ -10,7 +10,8 @@ import SwiftUI
 struct Daylight: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
-    @State var clicked = false
+    @State var showTimeRemaining = false
+    @State var showAnimatingView = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -20,11 +21,16 @@ struct Daylight: View {
                 background
                 TabView{
                     sunGraphic
-                        .onTapGesture {
-                            withAnimation{
-                                clicked.toggle()
-                            }
+                    .onTapGesture {
+                        withAnimation{
+                            showTimeRemaining.toggle()
                         }
+                    }
+                    .onLongPressGesture {
+                        showAnimatingView.toggle()
+                        simpleSuccessHaptic()
+                    }
+                    
                     daylightInfo
                 }
                 .frame(
@@ -57,11 +63,15 @@ struct Daylight: View {
         ZStack{
             sunShadow
             
-            if !clicked {
+            if !showTimeRemaining {
                 sun
             }
             else {
                 remainingTime
+            }
+            
+            if showAnimatingView{
+                CircleAnimationDay(viewModel: self.viewModel, isShowing: $showAnimatingView)
             }
         }
     }
@@ -91,6 +101,11 @@ struct Daylight: View {
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+    }
+    
+    func simpleSuccessHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 
