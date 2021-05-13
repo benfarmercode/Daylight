@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Daylight: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
     @State var clicked = false
     
@@ -66,18 +67,18 @@ struct Daylight: View {
     }
     
     var sunShadow: some View{
-        CircleFull(radius: 128, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
+        CircleFull(radius: globalScreenWidth *  0.35, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
     }
     
     var sun: some View{
-        CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
+        CircleSlice(radius: globalScreenWidth *  0.35, endAngle: viewModel.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
     }
     
     var remainingTime: some View{
         VStack{
             Text("\(viewModel.remainingDaylight) remains.")
         }
-        .font(.system(size: 18, design: .serif))
+        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
     }
     
@@ -88,7 +89,7 @@ struct Daylight: View {
             Text("")
             Text("Location: \(LocationManager.shared.locationData.locationName)")
         }
-        .font(.system(size: 18, design: .serif))
+        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
     }
 }

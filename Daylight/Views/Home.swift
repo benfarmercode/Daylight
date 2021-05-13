@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Home: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -29,6 +30,11 @@ struct Home: View {
                     Nighttime()
                         .transition(.opacity)
                 }
+            }
+            else{
+                Text("Please enable location services.")
+                    .foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
+                    .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
             }
         }
     }

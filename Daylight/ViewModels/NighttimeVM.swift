@@ -87,6 +87,7 @@ extension Nighttime{
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.hour, .minute]
             formatter.unitsStyle = .positional
+            formatter.zeroFormattingBehavior = .pad
             
             let timeRemaining = getTotalNighttimeInterval() - getElapsedNighttimeInterval()
             self.remainingNighttime = formatter.string(from: TimeInterval(timeRemaining)) ?? ""

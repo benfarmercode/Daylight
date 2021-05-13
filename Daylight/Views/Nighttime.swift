@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Nighttime: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
     @State var clicked = false
     
@@ -66,18 +67,21 @@ struct Nighttime: View {
     }
     
     var moonShadow: some View{
-        CircleFull(radius: 128, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
+        GeometryReader{ bounds in
+            CircleFull(radius: globalScreenWidth *  0.35, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
+        }
+       
     }
     
     var moon: some View{
-        CircleSlice(radius: 128, endAngle: viewModel.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
+        CircleSlice(radius: globalScreenWidth *  0.35, endAngle: viewModel.endAngle, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
     }
     
     var remainingTime: some View{
         VStack{
             Text("\(viewModel.remainingNighttime) remains.")
         }
-        .font(.system(size: 18, design: .serif))
+        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ))
     }
     
@@ -88,7 +92,7 @@ struct Nighttime: View {
             Text("")
             Text("Location: \(LocationManager.shared.locationData.locationName)")
         }
-        .font(.system(size: 18, design: .serif))
+        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
     }
 }

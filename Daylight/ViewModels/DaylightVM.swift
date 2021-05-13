@@ -69,9 +69,10 @@ extension Daylight{
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.hour, .minute]
             formatter.unitsStyle = .positional
-            
+            formatter.zeroFormattingBehavior = .pad
             let timeRemaining = getTotalDaylightInterval() - getElapsedDaylightInterval()
             self.remainingDaylight = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
+            
             logger.info("Remaining Daylight = \(self.remainingDaylight)")
         }
         
