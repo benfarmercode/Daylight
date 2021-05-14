@@ -11,17 +11,13 @@ struct Home: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
     @State var viewAppeared = false
+    @State var showOnboarding = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack{
             background
-                .onAppear(){
-                    viewModel.runLocationService()
-                    viewModel.scheduleMinuteChangeTimer()
-                }
-            
             if viewModel.locationServiceComplete{
                 if viewModel.isDaytime{
                     Daylight()
@@ -39,15 +35,36 @@ struct Home: View {
                         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
                 }
             }
-        }.onAppear{
-            withAnimation(Animation.linear.delay(2)){
-                self.viewAppeared = true
+        }
+        .onAppear{
+            DispatchQueue.main.async {
+                let didLaunchBefore = UserDefaults.standard.bool(forKey: "didLaunchBefore")
+                if didLaunchBefore{
+                    triggerLocationRequest()
+                }
+                else{
+                    UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+                    self.showOnboarding = true
+                }
             }
+        }
+        .sheet(isPresented: $showOnboarding, onDismiss: {
+            triggerLocationRequest()
+        }) {
+            Onboarding()
         }
     }
     
     var background: some View{
         BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
+    }
+    
+    func triggerLocationRequest(){
+        viewModel.runLocationService()
+        viewModel.scheduleMinuteChangeTimer()
+        withAnimation(Animation.linear.delay(2)){
+            self.viewAppeared = true
+        }
     }
 }
 

@@ -152,14 +152,14 @@ struct CircleAnimationNight: View{
         ZStack{
             Circle()
                 .stroke(Color.black.opacity(0.3),
-                        style: StrokeStyle(lineWidth: 30))
+                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
                 .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
             
             // Animation Circle
             Circle()
                 .trim(from: 0, to: self.fill)
                 .stroke(Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ),
-                        style: StrokeStyle(lineWidth: 30))
+                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
                 .rotationEffect(.init(degrees: -90))
                 .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
                 .onAnimationCompleted(for: self.fill) {
@@ -216,14 +216,14 @@ struct CircleAnimationDay: View{
         ZStack{
             Circle()
                 .stroke(Color.black.opacity(0.3),
-                        style: StrokeStyle(lineWidth: 30))
+                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
                 .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
             
             // Animation Circle
             Circle()
                 .trim(from: 0, to: self.fill)
                 .stroke(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ),
-                        style: StrokeStyle(lineWidth: 30))
+                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
                 .rotationEffect(.init(degrees: -90))
                 .frame(width: globalScreenWidth *  0.7, height: globalScreenWidth *  0.7)
                 .onAnimationCompleted(for: self.fill) {

@@ -24,6 +24,8 @@
 		2754FFDD26333DD900885193 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFDC26333DD900885193 /* LocationData.swift */; };
 		2754FFF32633441100885193 /* DaylightVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFF22633441100885193 /* DaylightVM.swift */; };
 		277C79C6263E8F4500334D7F /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C79C5263E8F4500334D7F /* Shapes.swift */; };
+		2792E5F3264DD8F300C40CAD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792E5F2264DD8F300C40CAD /* Onboarding.swift */; };
+		2792E610264DE4A900C40CAD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792E5F2264DD8F300C40CAD /* Onboarding.swift */; };
 		2799D0692643D7BD004B97C1 /* WidgetSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0682643D7BD004B97C1 /* WidgetSmall.swift */; };
 		2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */; };
 		2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0742643D7CD004B97C1 /* WidgetLarge.swift */; };
@@ -103,6 +105,7 @@
 		2754FFDC26333DD900885193 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		2754FFF22633441100885193 /* DaylightVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightVM.swift; sourceTree = "<group>"; };
 		277C79C5263E8F4500334D7F /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		2792E5F2264DD8F300C40CAD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2799D0682643D7BD004B97C1 /* WidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSmall.swift; sourceTree = "<group>"; };
 		2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMedium.swift; sourceTree = "<group>"; };
 		2799D0742643D7CD004B97C1 /* WidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLarge.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 				2754FFC12633344D00885193 /* Home.swift */,
 				27540000263347F200885193 /* Daylight.swift */,
 				272C208D263411FB00C929B8 /* Nighttime.swift */,
+				2792E5F2264DD8F300C40CAD /* Onboarding.swift */,
 				277C79C5263E8F4500334D7F /* Shapes.swift */,
 			);
 			path = Views;
@@ -447,6 +451,7 @@
 				2754FFC22633344D00885193 /* Home.swift in Sources */,
 				27CF4EE62640679800BA71BE /* DaylightEntry.swift in Sources */,
 				272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */,
+				2792E5F3264DD8F300C40CAD /* Onboarding.swift in Sources */,
 				272C208E263411FB00C929B8 /* Nighttime.swift in Sources */,
 				27540010263357A600885193 /* HomeVM.swift in Sources */,
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
@@ -489,6 +494,7 @@
 				27CF4EEB264067AB00BA71BE /* TimeData.swift in Sources */,
 				27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */,
 				2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */,
+				2792E610264DE4A900C40CAD /* Onboarding.swift in Sources */,
 				27CF4F3926407B3300BA71BE /* Globals.swift in Sources */,
 				27CF4EF02640699300BA71BE /* Daylight.swift in Sources */,
 				27CF4F3E26407B3500BA71BE /* Extensions.swift in Sources */,
