@@ -12,11 +12,12 @@ struct Nighttime: View {
     @StateObject var viewModel = ViewModel()
     @State var showTimeRemaining = false
     @State var showAnimatingView = false
+    @State var showOnboarding = false
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        GeometryReader{ geometry in
+//        GeometryReader{ geometry in
             ZStack{
                 background
                 
@@ -33,11 +34,24 @@ struct Nighttime: View {
                     }
                     
                     nighttimeInfo
+                    
+                    VStack{
+                       
+                        Image(systemName: "questionmark.square")
+                            .onTapGesture {
+                                self.showOnboarding.toggle()
+                            }
+                            .foregroundColor(Color(#colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1)))
+                            
+                        
+                    }.sheet(isPresented: $showOnboarding){
+                        Onboarding()
+                    }
                 }
-                .frame(
-                    width: geometry.size.width ,
-                    height: geometry.size.height
-                )
+//                .frame(
+//                    width: geometry.size.width ,
+//                    height: geometry.size.height
+//                )
                 .tabViewStyle(PageTabViewStyle())
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
@@ -53,7 +67,7 @@ struct Nighttime: View {
                     viewModel.update()
                 }
             }
-        }
+//        }
     }
     
     var background: some View{
@@ -90,7 +104,7 @@ struct Nighttime: View {
     
     var remainingTime: some View{
         VStack{
-            Text("\(viewModel.remainingNighttime) remains.")
+            Text("\(viewModel.remainingNighttime) until Sunrise.")
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ))

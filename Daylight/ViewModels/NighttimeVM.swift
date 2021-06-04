@@ -93,7 +93,7 @@ extension Nighttime{
             let totalTime = getTotalNighttimeInterval()
             self.totalNighttime = formatter.string(from: TimeInterval(totalTime)) ?? ""
             
-            let timeRemaining = getTotalNighttimeInterval() - getElapsedNighttimeInterval()
+            let timeRemaining = getTotalNighttimeInterval() - getElapsedNighttimeInterval() + 60
             self.remainingNighttime = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
             logger.info("Total Time = \(self.totalNighttime)")
             logger.info("Remaining Nighttime = \(self.remainingNighttime)")

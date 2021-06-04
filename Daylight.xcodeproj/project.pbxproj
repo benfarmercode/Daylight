@@ -30,6 +30,8 @@
 		2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */; };
 		2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0742643D7CD004B97C1 /* WidgetLarge.swift */; };
 		2799D0C826445CC5004B97C1 /* DaylightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0C726445CC5004B97C1 /* DaylightTests.swift */; };
+		27C81B762669DCF600FD9103 /* OnboardingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81B752669DCF600FD9103 /* OnboardingVM.swift */; };
+		27C81B802669DE9400FD9103 /* OnboardingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81B752669DCF600FD9103 /* OnboardingVM.swift */; };
 		27CF4E8E26405C5A00BA71BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */; };
 		27CF4E9026405C5A00BA71BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */; };
 		27CF4E9326405C5A00BA71BE /* DaylightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4E9226405C5A00BA71BE /* DaylightWidget.swift */; };
@@ -112,6 +114,7 @@
 		2799D0C526445CC5004B97C1 /* DaylightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaylightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2799D0C726445CC5004B97C1 /* DaylightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightTests.swift; sourceTree = "<group>"; };
 		2799D0C926445CC5004B97C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27C81B752669DCF600FD9103 /* OnboardingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingVM.swift; path = Daylight/Views/OnboardingVM.swift; sourceTree = SOURCE_ROOT; };
 		27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DaylightWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -151,6 +154,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2749B54C2669A77400A9D3B4 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2792E5F2264DD8F300C40CAD /* Onboarding.swift */,
+				27C81B752669DCF600FD9103 /* OnboardingVM.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		2754003226339DF200885193 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +223,7 @@
 				2754FFC12633344D00885193 /* Home.swift */,
 				27540000263347F200885193 /* Daylight.swift */,
 				272C208D263411FB00C929B8 /* Nighttime.swift */,
-				2792E5F2264DD8F300C40CAD /* Onboarding.swift */,
+				2749B54C2669A77400A9D3B4 /* Onboarding */,
 				277C79C5263E8F4500334D7F /* Shapes.swift */,
 			);
 			path = Views;
@@ -455,6 +467,7 @@
 				272C208E263411FB00C929B8 /* Nighttime.swift in Sources */,
 				27540010263357A600885193 /* HomeVM.swift in Sources */,
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
+				27C81B762669DCF600FD9103 /* OnboardingVM.swift in Sources */,
 				2754003426339E3700885193 /* LocationManager.swift in Sources */,
 				2754FFDD26333DD900885193 /* LocationData.swift in Sources */,
 				273448862643524000FFBB8C /* WidgetSizes.swift in Sources */,
@@ -480,6 +493,7 @@
 			files = (
 				27CF4EF5264069B000BA71BE /* DaylightVM.swift in Sources */,
 				27CF4EDD2640661E00BA71BE /* DaylightWidgetView.swift in Sources */,
+				27C81B802669DE9400FD9103 /* OnboardingVM.swift in Sources */,
 				27CF4F04264069CC00BA71BE /* Home.swift in Sources */,
 				27CF4ED42640661A00BA71BE /* DaylightProvider.swift in Sources */,
 				27CF4EFF264069C900BA71BE /* HomeVM.swift in Sources */,

@@ -5,6 +5,12 @@
 //  Created by Ben Farmer on 4/23/21.
 //
 
+/*
+change update from 1 second to 10 seconds
+change time remaining to be accurate. 1 min left showed 0 minutes.
+ change transition to sunset immediate. i think it is 1 minute extra
+ */
+
 import SwiftUI
 
 struct Home: View {
@@ -35,9 +41,11 @@ struct Home: View {
                         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
                 }
             }
+//            Text("Width: \(globalDeviceWidth), Height: \(globalDeviceHeight)")
         }
         .onAppear{
             DispatchQueue.main.async {
+                
                 let didLaunchBefore = UserDefaults.standard.bool(forKey: "didLaunchBefore")
                 if didLaunchBefore{
                     triggerLocationRequest()

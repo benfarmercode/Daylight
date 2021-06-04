@@ -12,8 +12,9 @@ struct Daylight: View {
     @StateObject var viewModel = ViewModel()
     @State var showTimeRemaining = false
     @State var showAnimatingView = false
+    @State var showOnboarding = false
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         GeometryReader{ geometry in
@@ -32,6 +33,21 @@ struct Daylight: View {
                     }
                     
                     daylightInfo
+                    
+                    VStack{
+                       
+                        Image(systemName: "questionmark.square")
+                            .onTapGesture {
+                                self.showOnboarding.toggle()
+                            }
+                            .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+                            
+                        
+                    }.sheet(isPresented: $showOnboarding){
+                        Onboarding()
+                    }
+                    
+                    
                 }
                 .frame(
                     width: geometry.size.width ,
@@ -86,7 +102,7 @@ struct Daylight: View {
     
     var remainingTime: some View{
         VStack{
-            Text("\(viewModel.remainingDaylight) remains.")
+            Text("\(viewModel.remainingDaylight) to sunset.")
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
         .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))

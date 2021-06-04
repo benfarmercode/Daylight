@@ -187,7 +187,7 @@ struct CircleAnimationNight: View{
                 .animation(Animation.easeInOut(duration: 1.5))
             
             if animationComplete{
-                Text("Total Night: \(viewModel.totalNighttime)")
+                Text("Total Nighttime: \(viewModel.totalNighttime)")
                     .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
                     .foregroundColor(Color( #colorLiteral(red: 0.1953838468, green: 0.2151450515, blue: 0.2484077811, alpha: 1) ))
             }

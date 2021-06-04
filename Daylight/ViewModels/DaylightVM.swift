@@ -37,6 +37,10 @@ extension Daylight{
             logger.info("Daylight Widgets reloaded.")
         }
         
+        func showHelp(){
+            
+        }
+        
         //MARK: PRIVATE
         private let logger = Logger(subsystem: subsystem!, category: "DaylightVM")
         private let calendar = Calendar.current
@@ -75,7 +79,7 @@ extension Daylight{
             let totalTime = getTotalDaylightInterval()
             self.totalDaylight = formatter.string(from: TimeInterval(totalTime)) ?? ""
             
-            let timeRemaining = getTotalDaylightInterval() - getElapsedDaylightInterval()
+            let timeRemaining = getTotalDaylightInterval() - getElapsedDaylightInterval() + 60
             self.remainingDaylight = formatter.string(from: TimeInterval(timeRemaining)) ?? ""
             
             logger.info("Remaining Daylight = \(self.remainingDaylight)")
