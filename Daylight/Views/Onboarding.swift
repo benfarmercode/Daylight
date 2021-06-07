@@ -18,9 +18,6 @@ struct Onboarding: View {
     @State var moveAlongCircle = false
     @State var animationComplete = false
     
-//    @Binding var isShowing: Bool
-    
-    
     @State var scale: CGFloat = 1
     @State var yOffset1: CGFloat = 0.0
     @State var yOffset2: CGFloat = 0.0
@@ -34,11 +31,13 @@ struct Onboarding: View {
     @State var opacity6: Double = 0.0
     @State var tapped = false
     @State var held = false
-    //    @State var position: CGPoint = .zero
-    
+ 
     var body: some View {
         
         ZStack{
+            
+            BackgroundGradient(innerColor:Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)), outerColor: Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)))
+            
             HStack{
                 Spacer()
                 switch viewModel.selectedPage {
@@ -86,60 +85,37 @@ struct Onboarding: View {
                     
                 default:
                     Spacer()
-                //                Text("Hooo")
-                
+                        .onAppear{
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                 }
                 Spacer()
-                //        }.onRotate { _ in
-                //            self.viewModel.checkDeviceOrientation()
-                //        }
-                
-            }.onAppear{
-                self.viewModel.fireTimer()
-                //        .gesture(
-                //            DragGesture(minimumDistance: 0, coordinateSpace: .global)
-                //                .onChanged { value in
-                //                    self.position = value.location
-                //                }
-                //                .onEnded { _ in
-                //                    self.position = .zero
-                //                }
-                //        )
-                //        .border(Color.red)
             }
             .contentShape(Rectangle())
-            .onClickGesture { point in
-                if point.x > globalDeviceWidth * 0.5 {
-                    self.viewModel.selectedPage += 1
-                    print("plus \(point.x)")
-                }
-                //            if self.viewModel.selectedPage == 7{
-                //                self.presentationMode.wrappedValue.dismiss()
-                //            }
-                else {
-                    self.viewModel.selectedPage -= 1
-                    print("minus \(point.x)")
-                    
-                    if self.viewModel.selectedPage < 1{
-                        self.viewModel.selectedPage = 1
+            .overlay(
+                TappableView {
+                    (location, taps) in
+                    if location.x < globalDeviceWidth * 0.5{
+                        self.viewModel.decrementPageControl()
                     }
+                    else{
+                        self.viewModel.incrementPageControl()
+                    }
+                    
                 }
-                if self.viewModel.selectedPage == 7 {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-                
-            }
-            .border(Color.red)
-            
+            )
             
             VStack{
-                RoundedRectangle(cornerRadius: 5)
-                    .frame(width: globalDeviceWidth * 0.9, height: globalDeviceHeight * 0.01)
-                    .padding(.all, 5)
-                
+                ProgressBars(selectedPage: $viewModel.selectedPage, value: $viewModel.progressValue)
+                    .frame(width: globalDeviceWidth * 0.9, height: 20)
+                    .padding(.top, 10)
                 Spacer()
             }
-            
+        }.onAppear{
+            self.viewModel.fireTimer()
+        }
+        .onDisappear{
+            self.viewModel.invalidateTimer()
         }
     }
     
@@ -151,7 +127,6 @@ struct Onboarding: View {
                 .frame(width: 100, height: 100)
         }.foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
         .font(Font.system(sizeClass == .compact ? .subheadline : .title2, design: .serif))
-        //        .scaleEffect(scale)
         .offset(y: yOffset1)
         .opacity(opacity1)
         .onAppear {
@@ -280,8 +255,7 @@ struct Onboarding: View {
             
         }.foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
         .font(Font.system(sizeClass == .compact ? .subheadline : .title2, design: .serif))
-        .offset(y: yOffset3)
-//        .opacity(opacity4)
+        .offset(y: yOffset4)
         .onAppear {
             let baseAnimation = Animation.easeInOut(duration: 1)
             let repeated = baseAnimation.repeatForever(autoreverses: true)
@@ -290,12 +264,6 @@ struct Onboarding: View {
             withAnimation(repeated) {
                 yOffset4 = 5.0
             }
-            
-//            let opacityAnimation = Animation.easeInOut(duration: 1.5)
-            
-//            withAnimation(opacityAnimation){
-//                opacity4 = 1.0
-//            }
             
             withAnimation (delayChange){
                 tapped = true
@@ -311,12 +279,6 @@ struct Onboarding: View {
             withAnimation(repeated) {
                 yOffset4 = 0.0
             }
-//
-//            let opacityAnimation = Animation.easeInOut(duration: 1.5)
-//
-//            withAnimation(opacityAnimation){
-//                opacity4 = 0.0
-//            }
             
             withAnimation (delayChange){
                 tapped = false
@@ -340,7 +302,6 @@ struct Onboarding: View {
         }.foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
         .font(Font.system(sizeClass == .compact ? .subheadline : .title2, design: .serif))
         .offset(y: yOffset4)
-//        .opacity(opacity4)
         .onAppear {
             let baseAnimation = Animation.easeInOut(duration: 1)
             let repeated = baseAnimation.repeatForever(autoreverses: true)
@@ -433,33 +394,33 @@ struct Onboarding: View {
     
     var moonIcon: some View{
         ZStack{
-            CircleFull(radius: globalScreenWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
-            CircleSlice(radius: globalScreenWidth *  0.25, endAngle: Double.pi * 0.3, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+            CircleFull(radius: globalDeviceWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
+            CircleSlice(radius: globalDeviceWidth *  0.25, endAngle: Double.pi * 0.3, fillColor: Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ), whiteShadowOpacity: 0.1, forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
         }
     }
 
     var locationIcon: some View{
         Image(systemName: "location.circle")
             .resizable()
-            .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+            .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
             .foregroundColor(Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ))
     }
     
     var sunIcon: some View{
         ZStack{
-            CircleFull(radius: globalScreenWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
-            CircleSlice(radius: globalScreenWidth *  0.25, endAngle: Double.pi * 0.3, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+            CircleFull(radius: globalDeviceWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalScreenWidth *  0.5)
+            CircleSlice(radius: globalDeviceWidth *  0.25, endAngle: Double.pi * 0.3, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
         }
     }
     
     var timeRemainingDayIcon: some View{
         ZStack{
-            CircleFull(radius: globalScreenWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+            CircleFull(radius: globalDeviceWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
             Text("5:34 to sunset.")
                 .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
                 .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
@@ -469,8 +430,8 @@ struct Onboarding: View {
     
     var timeRemainingNightIcon: some View{
         ZStack{
-            CircleFull(radius: globalScreenWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+            CircleFull(radius: globalDeviceWidth *  0.25, fillColor: Color( #colorLiteral(red: 0.1768432284, green: 0.1971183778, blue: 0.2329204262, alpha: 1) ), forWidget: false, widgetType: nil)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
             Text("5:34 to sunrise.")
                 .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
                 .foregroundColor(Color( #colorLiteral(red: 0.426386714, green: 0.4582056999, blue: 0.4998273253, alpha: 1) ))
@@ -483,16 +444,16 @@ struct Onboarding: View {
         ZStack{
             Circle()
                 .stroke(Color.black.opacity(0.3),
-                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+                        style: StrokeStyle(lineWidth: globalDeviceWidth * 0.07))
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
             
             // Animation Circle
             Circle()
                 .trim(from: 0, to: self.fill)
                 .stroke(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ),
-                        style: StrokeStyle(lineWidth: globalScreenWidth * 0.07))
+                        style: StrokeStyle(lineWidth: globalDeviceWidth * 0.07))
                 .rotationEffect(.init(degrees: -90))
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
                 .onAnimationCompleted(for: self.fill) {
                     withAnimation{
                         animationComplete = true
@@ -512,13 +473,13 @@ struct Onboarding: View {
             //full sun
             Circle()
                 .fill(Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ).opacity(Double(self.fill)))
-                .frame(width: globalScreenWidth *  0.5, height: globalScreenWidth *  0.5)
+                .frame(width: globalDeviceWidth *  0.5, height: globalDeviceWidth *  0.5)
             
             //small circle
             Circle()
                 .fill(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
-                .frame(width: globalScreenWidth * 0.1, height: globalScreenWidth * 0.1)
-                .offset(y: -globalScreenWidth * 0.25)
+                .frame(width: globalDeviceWidth * 0.1, height: globalDeviceWidth * 0.1)
+                .offset(y: -globalDeviceWidth * 0.25)
                 .rotationEffect(.degrees(moveAlongCircle ? 360 : 0))
                 .animation(Animation.easeInOut(duration: 1.5).delay(0.75))
             
@@ -530,13 +491,7 @@ struct Onboarding: View {
             
         }
         .contentShape(Rectangle())
-//        .onTapGesture {
-//            withAnimation(Animation.default){
-//                isShowing = false
-//            }
-//        }
     }
-    
 }
 
 struct Onboarding_Previews: PreviewProvider {

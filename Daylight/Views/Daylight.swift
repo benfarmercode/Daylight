@@ -8,46 +8,41 @@
 import SwiftUI
 
 struct Daylight: View {
+    //MARK: PUBLIC
     @Environment(\.horizontalSizeClass) var sizeClass
     @StateObject var viewModel = ViewModel()
-    @State var showTimeRemaining = false
-    @State var showAnimatingView = false
-    @State var showOnboarding = false
-    
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    let updateTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         GeometryReader{ geometry in
             ZStack{
                 background
                 TabView{
-                    sunGraphic
-                    .onTapGesture {
-                        withAnimation{
-                            showTimeRemaining.toggle()
-                        }
-                    }
-                    .onLongPressGesture {
-                        showAnimatingView.toggle()
-                        simpleSuccessHaptic()
-                    }
-                    
-                    daylightInfo
-                    
-                    VStack{
-                       
-                        Image(systemName: "questionmark.square")
-                            .onTapGesture {
-                                self.showOnboarding.toggle()
+                    //TAB 1//
+                    mainIcon
+                        .onTapGesture {
+                            withAnimation{
+                                viewModel.showTimeRemaining.toggle()
                             }
-                            .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
-                            
+                        }
+                        .onLongPressGesture {
+                            viewModel.showAnimatingView.toggle()
+                            simpleSuccessHaptic()
+                        }
+                    
+                    //TAB 2//
+                    ZStack{
+                        info
                         
-                    }.sheet(isPresented: $showOnboarding){
-                        Onboarding()
+                        helpButton
+                            .onTapGesture {
+                                viewModel.showOnboarding.toggle()
+                            }
+                            .padding(.all, globalDeviceWidth * 0.1)
+                            .sheet(isPresented: $viewModel.showOnboarding){
+                                Onboarding()
+                            }
                     }
-                    
-                    
                 }
                 .frame(
                     width: geometry.size.width ,
@@ -57,73 +52,142 @@ struct Daylight: View {
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .edgesIgnoringSafeArea(.all)
-                .onAppear{
-                    viewModel.setup()
-                    viewModel.reloadWidgets()
-                }
-                .onDisappear{
-                    timer.upstream.connect().cancel()
-                }
-                .onReceive(timer) {_ in
-                    viewModel.update()
-                }
+            }.onAppear{
+                viewModel.setup()
+                viewModel.reloadWidgets()
+            }
+            .onDisappear{
+                updateTimer.upstream.connect().cancel()
+            }
+            .onReceive(updateTimer) {_ in
+                viewModel.update()
             }
         }
     }
     
-    var background: some View{
-        BackgroundGradient(innerColor: Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) ), outerColor: Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) ))
+    //MARK: PRIVATE
+    private var background: some View{
+        if viewModel.isDaytime{
+            return BackgroundGradient(
+                innerColor: viewModel.dayColors.gradientInner,
+                outerColor: viewModel.dayColors.gradientOuter
+            ).transition(.opacity)
+            .id("background1")
+        }
+        else{
+            return BackgroundGradient(
+                innerColor: viewModel.nightColors.gradientInner,
+                outerColor: viewModel.nightColors.gradientOuter
+            ).transition(.opacity)
+            .id("background2")
+        }
     }
     
-    var sunGraphic: some View{
+    private var mainIcon: some View{
         ZStack{
-            sunShadow
+            iconBackground
             
-            if !showTimeRemaining {
-                sun
+            if !viewModel.showTimeRemaining {
+                iconSlice
             }
             else {
                 remainingTime
             }
             
-            if showAnimatingView{
-                CircleAnimationDay(viewModel: self.viewModel, isShowing: $showAnimatingView)
+            if viewModel.showAnimatingView{
+                CircleAnimation(viewModel: viewModel, isShowing: $viewModel.showAnimatingView)
             }
         }
     }
     
-    var sunShadow: some View{
-        CircleFull(radius: globalScreenWidth *  0.35, fillColor: Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) ), forWidget: false, widgetType: nil)
+    private var iconBackground: some View{
+        if viewModel.isDaytime{
+            return CircleFull(
+                radius: globalDeviceWidth *  0.35,
+                fillColor: viewModel.dayColors.iconBackground,
+                forWidget: false,
+                widgetType: nil
+            )
+        }
+        else{
+            return CircleFull(
+                radius: globalDeviceWidth *  0.35,
+                fillColor: viewModel.nightColors.iconBackground,
+                forWidget: false,
+                widgetType: nil
+            )
+        }
     }
     
-    var sun: some View{
-        CircleSlice(radius: globalScreenWidth *  0.35, endAngle: viewModel.endAngle, fillColor:  Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) ), whiteShadowOpacity: 0.4, forWidget: false, widgetType: nil)
+    private var iconSlice: some View{
+        if viewModel.isDaytime{
+            return CircleSlice(
+                radius: globalDeviceWidth *  0.35,
+                endAngle: viewModel.endAngle,
+                fillColor: viewModel.dayColors.slice,
+                whiteShadowOpacity: 0.4,
+                forWidget: false,
+                widgetType: nil
+            )
+        }
+        else{
+            return CircleSlice(
+                radius: globalDeviceWidth *  0.35,
+                endAngle: viewModel.endAngle,
+                fillColor: viewModel.nightColors.slice,
+                whiteShadowOpacity: 0.1,
+                forWidget: false,
+                widgetType: nil
+            )
+        }
     }
     
-    var remainingTime: some View{
+    private var remainingTime: some View{
         VStack{
-            Text("\(viewModel.remainingDaylight) to sunset.")
+            let lastWord = viewModel.isDaytime ? "sunset" : "sunrise"
+            Text("\(viewModel.remainingTime) to \(lastWord).")
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
-        .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+        .foregroundColor(viewModel.isDaytime ? viewModel.dayColors.text : viewModel.nightColors.slice)
     }
     
-    var daylightInfo: some View{
+    private var info: some View{
         VStack{
-            Text("Sunrise: \(viewModel.sunrise)")
-            Text("Sunset: \(viewModel.sunset)")
+            if(viewModel.isDaytime){
+                Text("Sunrise: \(viewModel.sunrise)")
+                Text("Sunset: \(viewModel.sunset)")
+            }
+            else{
+                Text("Sunset: \(viewModel.sunset)")
+                Text("Sunrise: \(viewModel.sunrise)")
+            }
+            
             Text("")
             Text("Location: \(LocationManager.shared.locationData.locationName)")
         }
         .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
-        .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
+        .foregroundColor(viewModel.isDaytime ? viewModel.dayColors.text : viewModel.nightColors.text)
     }
     
-    func simpleSuccessHaptic() {
+    private var helpButton: some View{
+        VStack{
+            HStack{
+                Spacer()
+                Image(systemName: "questionmark.square")
+                    .foregroundColor(viewModel.isDaytime ? viewModel.dayColors.text : viewModel.nightColors.text)
+            }
+            Spacer()
+        }
+        
+    }
+    
+    private func simpleSuccessHaptic() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
 }
+
+
 
 struct DaylightView_Previews: PreviewProvider {
     static var previews: some View {

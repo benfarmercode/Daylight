@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272290AF263FBBD0006DC4C3 /* NTSolar.swift */; };
-		272C208E263411FB00C929B8 /* Nighttime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C208D263411FB00C929B8 /* Nighttime.swift */; };
-		272C20932634151800C929B8 /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
 		273448862643524000FFBB8C /* WidgetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidgetSizes.swift */; };
 		2734488F2643527100FFBB8C /* WidgetSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273448852643524000FFBB8C /* WidgetSizes.swift */; };
 		273448992643575000FFBB8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273448982643575000FFBB8C /* Assets.xcassets */; };
@@ -23,6 +21,14 @@
 		2754FFCF26333C5800885193 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFCE26333C5800885193 /* TimeData.swift */; };
 		2754FFDD26333DD900885193 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFDC26333DD900885193 /* LocationData.swift */; };
 		2754FFF32633441100885193 /* DaylightVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFF22633441100885193 /* DaylightVM.swift */; };
+		275D8738266A7911005D69D1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8737266A7911005D69D1 /* Colors.swift */; };
+		275D873C266A7C59005D69D1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8737266A7911005D69D1 /* Colors.swift */; };
+		275D8741266A84E4005D69D1 /* CircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8740266A84E4005D69D1 /* CircleAnimation.swift */; };
+		275D8745266A851C005D69D1 /* CircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8740266A84E4005D69D1 /* CircleAnimation.swift */; };
+		275D874A266A9201005D69D1 /* ProgressBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8749266A9201005D69D1 /* ProgressBars.swift */; };
+		275D8758266A953E005D69D1 /* ProgressBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D8749266A9201005D69D1 /* ProgressBars.swift */; };
+		275D8760266A9BFF005D69D1 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D875F266A9BFF005D69D1 /* ProgressBar.swift */; };
+		275D8764266A9C47005D69D1 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D875F266A9BFF005D69D1 /* ProgressBar.swift */; };
 		277C79C6263E8F4500334D7F /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C79C5263E8F4500334D7F /* Shapes.swift */; };
 		2792E5F3264DD8F300C40CAD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792E5F2264DD8F300C40CAD /* Onboarding.swift */; };
 		2792E610264DE4A900C40CAD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792E5F2264DD8F300C40CAD /* Onboarding.swift */; };
@@ -30,6 +36,8 @@
 		2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D06E2643D7C5004B97C1 /* WidgetMedium.swift */; };
 		2799D0752643D7CD004B97C1 /* WidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0742643D7CD004B97C1 /* WidgetLarge.swift */; };
 		2799D0C826445CC5004B97C1 /* DaylightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799D0C726445CC5004B97C1 /* DaylightTests.swift */; };
+		27B28728266B1E2B00843AB4 /* Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B28727266B1E2B00843AB4 /* Tappable.swift */; };
+		27B2872C266B1F7E00843AB4 /* Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B28727266B1E2B00843AB4 /* Tappable.swift */; };
 		27C81B762669DCF600FD9103 /* OnboardingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81B752669DCF600FD9103 /* OnboardingVM.swift */; };
 		27C81B802669DE9400FD9103 /* OnboardingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C81B752669DCF600FD9103 /* OnboardingVM.swift */; };
 		27CF4E8E26405C5A00BA71BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */; };
@@ -46,9 +54,7 @@
 		27CF4EFA264069C200BA71BE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754003326339E3700885193 /* LocationManager.swift */; };
 		27CF4EFF264069C900BA71BE /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754000F263357A600885193 /* HomeVM.swift */; };
 		27CF4F04264069CC00BA71BE /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFC12633344D00885193 /* Home.swift */; };
-		27CF4F09264069D000BA71BE /* Nighttime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C208D263411FB00C929B8 /* Nighttime.swift */; };
 		27CF4F0E264069D300BA71BE /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C79C5263E8F4500334D7F /* Shapes.swift */; };
-		27CF4F13264069D700BA71BE /* NighttimeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C20922634151800C929B8 /* NighttimeVM.swift */; };
 		27CF4F18264069DC00BA71BE /* NTSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272290AF263FBBD0006DC4C3 /* NTSolar.swift */; };
 		27CF4F1D264069F200BA71BE /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754FFDC26333DD900885193 /* LocationData.swift */; };
 		27CF4F2E26407B1D00BA71BE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF4F2D26407B1D00BA71BE /* Globals.swift */; };
@@ -90,8 +96,6 @@
 
 /* Begin PBXFileReference section */
 		272290AF263FBBD0006DC4C3 /* NTSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTSolar.swift; sourceTree = "<group>"; };
-		272C208D263411FB00C929B8 /* Nighttime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nighttime.swift; sourceTree = "<group>"; };
-		272C20922634151800C929B8 /* NighttimeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NighttimeVM.swift; sourceTree = "<group>"; };
 		273448852643524000FFBB8C /* WidgetSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSizes.swift; sourceTree = "<group>"; };
 		273448982643575000FFBB8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27540000263347F200885193 /* Daylight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daylight.swift; sourceTree = "<group>"; };
@@ -106,6 +110,10 @@
 		2754FFCE26333C5800885193 /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
 		2754FFDC26333DD900885193 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		2754FFF22633441100885193 /* DaylightVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightVM.swift; sourceTree = "<group>"; };
+		275D8737266A7911005D69D1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		275D8740266A84E4005D69D1 /* CircleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAnimation.swift; sourceTree = "<group>"; };
+		275D8749266A9201005D69D1 /* ProgressBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBars.swift; sourceTree = "<group>"; };
+		275D875F266A9BFF005D69D1 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		277C79C5263E8F4500334D7F /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		2792E5F2264DD8F300C40CAD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2799D0682643D7BD004B97C1 /* WidgetSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSmall.swift; sourceTree = "<group>"; };
@@ -114,7 +122,8 @@
 		2799D0C526445CC5004B97C1 /* DaylightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaylightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2799D0C726445CC5004B97C1 /* DaylightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaylightTests.swift; sourceTree = "<group>"; };
 		2799D0C926445CC5004B97C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27C81B752669DCF600FD9103 /* OnboardingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingVM.swift; path = Daylight/Views/OnboardingVM.swift; sourceTree = SOURCE_ROOT; };
+		27B28727266B1E2B00843AB4 /* Tappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tappable.swift; sourceTree = "<group>"; };
+		27C81B752669DCF600FD9103 /* OnboardingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingVM.swift; path = Daylight/ViewModels/OnboardingVM.swift; sourceTree = SOURCE_ROOT; };
 		27CF4E8B26405C5A00BA71BE /* DaylightWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DaylightWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CF4E8D26405C5A00BA71BE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		27CF4E8F26405C5A00BA71BE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -154,13 +163,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2749B54C2669A77400A9D3B4 /* Onboarding */ = {
+		2749B54C2669A77400A9D3B4 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				2792E5F2264DD8F300C40CAD /* Onboarding.swift */,
-				27C81B752669DCF600FD9103 /* OnboardingVM.swift */,
+				275D8740266A84E4005D69D1 /* CircleAnimation.swift */,
+				277C79C5263E8F4500334D7F /* Shapes.swift */,
+				275D8749266A9201005D69D1 /* ProgressBars.swift */,
+				275D875F266A9BFF005D69D1 /* ProgressBar.swift */,
+				27B28727266B1E2B00843AB4 /* Tappable.swift */,
 			);
-			path = Onboarding;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		2754003226339DF200885193 /* Services */ = {
@@ -222,9 +234,8 @@
 			children = (
 				2754FFC12633344D00885193 /* Home.swift */,
 				27540000263347F200885193 /* Daylight.swift */,
-				272C208D263411FB00C929B8 /* Nighttime.swift */,
-				2749B54C2669A77400A9D3B4 /* Onboarding */,
-				277C79C5263E8F4500334D7F /* Shapes.swift */,
+				2792E5F2264DD8F300C40CAD /* Onboarding.swift */,
+				2749B54C2669A77400A9D3B4 /* Subviews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,7 +245,7 @@
 			children = (
 				2754000F263357A600885193 /* HomeVM.swift */,
 				2754FFF22633441100885193 /* DaylightVM.swift */,
-				272C20922634151800C929B8 /* NighttimeVM.swift */,
+				27C81B752669DCF600FD9103 /* OnboardingVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -244,6 +255,7 @@
 			children = (
 				2754FFDC26333DD900885193 /* LocationData.swift */,
 				2754FFCE26333C5800885193 /* TimeData.swift */,
+				275D8737266A7911005D69D1 /* Colors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,23 +470,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				272C20932634151800C929B8 /* NighttimeVM.swift in Sources */,
 				2754FFF32633441100885193 /* DaylightVM.swift in Sources */,
 				2754FFC22633344D00885193 /* Home.swift in Sources */,
 				27CF4EE62640679800BA71BE /* DaylightEntry.swift in Sources */,
 				272290B0263FBBD0006DC4C3 /* NTSolar.swift in Sources */,
 				2792E5F3264DD8F300C40CAD /* Onboarding.swift in Sources */,
-				272C208E263411FB00C929B8 /* Nighttime.swift in Sources */,
 				27540010263357A600885193 /* HomeVM.swift in Sources */,
 				2754FFCF26333C5800885193 /* TimeData.swift in Sources */,
 				27C81B762669DCF600FD9103 /* OnboardingVM.swift in Sources */,
 				2754003426339E3700885193 /* LocationManager.swift in Sources */,
+				275D874A266A9201005D69D1 /* ProgressBars.swift in Sources */,
+				275D8760266A9BFF005D69D1 /* ProgressBar.swift in Sources */,
+				27B28728266B1E2B00843AB4 /* Tappable.swift in Sources */,
 				2754FFDD26333DD900885193 /* LocationData.swift in Sources */,
+				275D8738266A7911005D69D1 /* Colors.swift in Sources */,
 				273448862643524000FFBB8C /* WidgetSizes.swift in Sources */,
 				27CF4F3426407B2900BA71BE /* Extensions.swift in Sources */,
 				277C79C6263E8F4500334D7F /* Shapes.swift in Sources */,
 				27540001263347F200885193 /* Daylight.swift in Sources */,
 				27CF4F2E26407B1D00BA71BE /* Globals.swift in Sources */,
+				275D8741266A84E4005D69D1 /* CircleAnimation.swift in Sources */,
 				2754FF922633337900885193 /* DaylightApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,13 +507,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CF4EF5264069B000BA71BE /* DaylightVM.swift in Sources */,
+				275D873C266A7C59005D69D1 /* Colors.swift in Sources */,
 				27CF4EDD2640661E00BA71BE /* DaylightWidgetView.swift in Sources */,
+				275D8745266A851C005D69D1 /* CircleAnimation.swift in Sources */,
 				27C81B802669DE9400FD9103 /* OnboardingVM.swift in Sources */,
 				27CF4F04264069CC00BA71BE /* Home.swift in Sources */,
 				27CF4ED42640661A00BA71BE /* DaylightProvider.swift in Sources */,
 				27CF4EFF264069C900BA71BE /* HomeVM.swift in Sources */,
-				27CF4F13264069D700BA71BE /* NighttimeVM.swift in Sources */,
 				27CF4ECB2640661600BA71BE /* DaylightEntry.swift in Sources */,
+				275D8758266A953E005D69D1 /* ProgressBars.swift in Sources */,
 				27CF4F18264069DC00BA71BE /* NTSolar.swift in Sources */,
 				2734488F2643527100FFBB8C /* WidgetSizes.swift in Sources */,
 				2799D0692643D7BD004B97C1 /* WidgetSmall.swift in Sources */,
@@ -510,9 +527,10 @@
 				2799D06F2643D7C5004B97C1 /* WidgetMedium.swift in Sources */,
 				2792E610264DE4A900C40CAD /* Onboarding.swift in Sources */,
 				27CF4F3926407B3300BA71BE /* Globals.swift in Sources */,
+				275D8764266A9C47005D69D1 /* ProgressBar.swift in Sources */,
+				27B2872C266B1F7E00843AB4 /* Tappable.swift in Sources */,
 				27CF4EF02640699300BA71BE /* Daylight.swift in Sources */,
 				27CF4F3E26407B3500BA71BE /* Extensions.swift in Sources */,
-				27CF4F09264069D000BA71BE /* Nighttime.swift in Sources */,
 				27CF4F0E264069D300BA71BE /* Shapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,7 +684,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.Daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -691,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.Daylight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -753,7 +771,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.Daylight.DaylightWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -776,7 +794,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benfarmer.Daylight.DaylightWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

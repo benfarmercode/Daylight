@@ -10,7 +10,6 @@ import WidgetKit
 struct DaylightProvider: TimelineProvider {
     var homeViewModel = Home.ViewModel()
     var daylightViewModel = Daylight.ViewModel()
-    var nighttimeViewModel = Nighttime.ViewModel()
     
     private let placeholderEntry = DaylightEntry(
         date: Date(),
@@ -45,24 +44,21 @@ struct DaylightProvider: TimelineProvider {
         }
         
         else{
-            homeViewModel.checkIsDaytime()
-            if homeViewModel.isDaytime{
+            daylightViewModel.checkIsDaytime()
+            
+            if daylightViewModel.isDaytime{
                 isDaytime = true
-                daylightViewModel.update()
-                currentTime = daylightViewModel.currentTime
-                sunrise = daylightViewModel.sunrise
-                sunset = daylightViewModel.sunset
-                endAngle = daylightViewModel.endAngle
-                
             }
             else{
                 isDaytime = false
-                nighttimeViewModel.update()
-                currentTime = nighttimeViewModel.currentTime
-                sunrise = nighttimeViewModel.sunrise
-                sunset = nighttimeViewModel.sunset
-                endAngle = nighttimeViewModel.endAngle
             }
+            
+            daylightViewModel.update()
+            currentTime = daylightViewModel.currentTime
+            sunrise = daylightViewModel.sunrise
+            sunset = daylightViewModel.sunset
+            endAngle = daylightViewModel.endAngle
+            
             let currentDate = Date()
             
             let entry = DaylightEntry(
