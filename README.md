@@ -1,11 +1,11 @@
 # Daylight
 iOS App providing a visual representation of the time until sunrise / sunset.
 
-<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%200.png" width="150"> <img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%201.png" width="150">
-<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%202.png" width="150">
-<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%203.png" width="150">
-<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%204.png" width="150">
-<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%205.png" width="150">
+<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%200.png" width="120"> <img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%201.png" width="120">
+<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%202.png" width="120">
+<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%203.png" width="120">
+<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%204.png" width="120">
+<img src="images/Apple%20iPhone%2011%20Pro%20Max%20Screenshot%205.png" width="120">
 
 # Overview
 - MVVM architecture
