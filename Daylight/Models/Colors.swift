@@ -16,9 +16,9 @@ protocol ColorScheme{
 }
 
 struct DayColors: ColorScheme{
-    var gradientInner: Color    = Color( #colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1) )
-    var gradientOuter: Color    = Color( #colorLiteral(red: 0.9647058824, green: 0.7728223205, blue: 0.7040713429, alpha: 1) )
-    var text: Color             = Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) )
+    var gradientInner: Color    = Color( #colorLiteral(red: 0.8784313725, green: 0.7764705882, blue: 0.5803921569, alpha: 1) )
+    var gradientOuter: Color    = Color( #colorLiteral(red: 0.9647058824, green: 0.7725490196, blue: 0.7058823529, alpha: 1) )
+    var text: Color             = Color( #colorLiteral(red: 0.5843137255, green: 0.3058823529, blue: 0.1490196078, alpha: 1) )
     var iconBackground: Color   = Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 0.1266320634) )
     var slice: Color            = Color( #colorLiteral(red: 0.9943665862, green: 0.9248313308, blue: 0.6853592992, alpha: 1) )
 }
