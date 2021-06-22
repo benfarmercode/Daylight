@@ -70,14 +70,16 @@ struct Daylight: View {
         if viewModel.isDaytime{
             return BackgroundGradient(
                 innerColor: viewModel.dayColors.gradientInner,
-                outerColor: viewModel.dayColors.gradientOuter
+                outerColor: viewModel.dayColors.gradientOuter,
+                isDaytime: viewModel.isDaytime
             ).transition(.opacity)
             .id("background1")
         }
         else{
             return BackgroundGradient(
                 innerColor: viewModel.nightColors.gradientInner,
-                outerColor: viewModel.nightColors.gradientOuter
+                outerColor: viewModel.nightColors.gradientOuter,
+                isDaytime: viewModel.isDaytime
             ).transition(.opacity)
             .id("background2")
         }

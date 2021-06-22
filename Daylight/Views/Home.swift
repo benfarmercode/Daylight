@@ -26,7 +26,12 @@ struct Home: View {
                 Daylight()
             }
             else{
-                locationServiceWarning
+                if viewModel.loadingTimeoutReached{
+                    locationServiceWarning
+                }
+                else{
+                    loadingIndicator
+                }
             }
         }
         .onAppear{
@@ -37,6 +42,15 @@ struct Home: View {
         }) {
             Onboarding()
         }
+        .onReceive(timer){ _ in
+            if viewModel.count > viewModel.loadingTimeout{
+                self.timer.upstream.connect().cancel()
+            }
+            else{
+                viewModel.updateTimer()
+            }
+
+        }
     }
     
     //MARK: PRIVATE
@@ -45,14 +59,22 @@ struct Home: View {
     }
     
     private var locationServiceWarning: some View{
-        if self.viewModel.viewAppeared{
-            return Text("Please enable location services.")
-                .foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
-                .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
-        }
-        else{
-            return Text("")
-        }
+        VStack{
+            Text("Error getting location.")
+            Text("Please enable location services and restart the app.")
+            Text("")
+            Text("If you've accidentely set the location service to 'Don't Allow', you can change that in the Settings of your device.")
+                .font(Font.system(sizeClass == .compact ? .caption : .body, design: .serif))
+            
+        }.foregroundColor(Color(#colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1)))
+        .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+        .padding(globalDeviceWidth * 0.1)
+        .multilineTextAlignment(.center)
+        
+    }
+    
+    private var loadingIndicator: some View{
+        LoadingIndicator()
     }
 }
 

@@ -17,6 +17,9 @@ extension Home{
         @Published var isDaytime: Bool = true
         @Published var viewAppeared: Bool = false
         @Published var showOnboarding: Bool = false
+        var count = 0
+        let loadingTimeout = 15
+        @Published var loadingTimeoutReached = false
         
         init(){
             let screenSize = UIScreen.main.bounds
@@ -28,6 +31,13 @@ extension Home{
             logger.info("Model Name: \(modelName)")
             logger.info("Screen Width: \(screenWidth)")
             logger.info("Screen Height: \(screenHeight)")
+        }
+        
+        func updateTimer(){
+            count += 1
+            if count > loadingTimeout{
+                loadingTimeoutReached = true
+            }
         }
         
         func onLoad(){

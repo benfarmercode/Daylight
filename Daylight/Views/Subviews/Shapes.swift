@@ -11,10 +11,29 @@ struct BackgroundGradient: View{
     let innerColor: Color
     let outerColor: Color
     @State var opacity = 0.0
+    @State var endRadius: CGFloat = 0.0
+    
+    var isDaytime: Bool?
+    
+    let nightWidth = globalDeviceWidth * 0.75
+    let dayWidth = globalDeviceWidth * 0.30
+    
     var body: some View{
-       
-        RadialGradient(gradient: Gradient(colors: [innerColor, outerColor]), center: .center, startRadius: 2, endRadius: 312)
+        RadialGradient(gradient: Gradient(colors: [innerColor, outerColor]), center: .center, startRadius: 2, endRadius: endRadius)
             .ignoresSafeArea()
+            .onAppear{
+                if isDaytime == nil{
+                    endRadius = dayWidth
+                }
+                else{
+                    if isDaytime!{
+                        endRadius = dayWidth
+                    }
+                    else{
+                        endRadius = nightWidth
+                    }
+                }
+            }
     }
 }
 

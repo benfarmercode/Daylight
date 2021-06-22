@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+extension StringProtocol {
+    subscript(offset: Int) -> Character {
+        self[index(startIndex, offsetBy: offset)]
+    }
+}
+
 // Our custom view modifier to track rotation and
 // call our action
 struct DeviceRotationViewModifier: ViewModifier {

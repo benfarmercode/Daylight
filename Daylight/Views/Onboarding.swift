@@ -34,89 +34,91 @@ struct Onboarding: View {
  
     var body: some View {
         
-        ZStack{
-            
-            BackgroundGradient(innerColor:Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)), outerColor: Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)))
-            
-            HStack{
-                Spacer()
-                switch viewModel.selectedPage {
-                case 1:
-                    VStack{
-                        Spacer()
-                        page1
-                        Spacer()
-                    }
-                    
-                case 2:
-                    VStack{
-                        Spacer()
-                        page2
-                        Spacer()
-                    }
-                    
-                case 3:
-                    VStack{
-                        Spacer()
-                        page3
-                        Spacer()
-                    }
-                    
-                case 4:
-                    VStack{
-                        Spacer()
-                        page4
-                        Spacer()
-                    }
-                    
-                case 5:
-                    VStack{
-                        Spacer()
-                        page5
-                        Spacer()
-                    }
-                    
-                case 6:
-                    VStack{
-                        Spacer()
-                        page6
-                        Spacer()
-                    }
-                    
-                default:
+        GeometryReader{ geometry in
+            ZStack{
+                BackgroundGradient(innerColor:Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)), outerColor: Color(#colorLiteral(red: 0.8784313725, green: 0.7750043273, blue: 0.5811821818, alpha: 1)))
+                
+                HStack{
                     Spacer()
-                        .onAppear{
-                            self.presentationMode.wrappedValue.dismiss()
+                    switch viewModel.selectedPage {
+                    case 1:
+                        VStack{
+                            Spacer()
+                            page1
+                            Spacer()
                         }
-                }
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .overlay(
-                TappableView {
-                    (location, taps) in
-                    if location.x < globalDeviceWidth * 0.5{
-                        self.viewModel.decrementPageControl()
+                        
+                    case 2:
+                        VStack{
+                            Spacer()
+                            page2
+                            Spacer()
+                        }
+                        
+                    case 3:
+                        VStack{
+                            Spacer()
+                            page3
+                            Spacer()
+                        }
+                        
+                    case 4:
+                        VStack{
+                            Spacer()
+                            page4
+                            Spacer()
+                        }
+                        
+                    case 5:
+                        VStack{
+                            Spacer()
+                            page5
+                            Spacer()
+                        }
+                        
+                    case 6:
+                        VStack{
+                            Spacer()
+                            page6
+                            Spacer()
+                        }
+                        
+                    default:
+                        Spacer()
+                            .onAppear{
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
                     }
-                    else{
-                        self.viewModel.incrementPageControl()
-                    }
-                    
+                    Spacer()
                 }
-            )
-            
-            VStack{
-                ProgressBars(selectedPage: $viewModel.selectedPage, value: $viewModel.progressValue)
-                    .frame(width: globalDeviceWidth * 0.9, height: 20)
-                    .padding(.top, 10)
-                Spacer()
+                .contentShape(Rectangle())
+                .overlay(
+                    TappableView {
+                        (location, taps) in
+                        if location.x < geometry.size.width * 0.5{
+                            self.viewModel.decrementPageControl()
+                        }
+                        else{
+                            self.viewModel.incrementPageControl()
+                        }
+                        
+                    }
+                )
+                
+                VStack{
+                    ProgressBars(selectedPage: $viewModel.selectedPage, value: $viewModel.progressValue)
+                        .frame(width: geometry.size.width * 0.9, height: 20)
+                        .padding(.top, 10)
+                    Spacer()
+                }
+            }.onAppear{
+                self.viewModel.fireTimer()
             }
-        }.onAppear{
-            self.viewModel.fireTimer()
+            .onDisappear{
+                self.viewModel.invalidateTimer()
+            }
         }
-        .onDisappear{
-            self.viewModel.invalidateTimer()
-        }
+        
     }
     
     var page1: some View{
@@ -484,13 +486,19 @@ struct Onboarding: View {
                 .animation(Animation.easeInOut(duration: 1.5).delay(0.75))
             
             if animationComplete{
-                Text("Total Daylight: 14:40")
-                    .font(Font.system(sizeClass == .compact ? .callout : .callout, design: .serif))
+                VStack{
+                    Text("Total Daylight:")
+                    Text("12 hours 42 minutes")
+                }
+                    .font(Font.system(sizeClass == .compact ? .subheadline : .title2, design: .serif))
                     .foregroundColor(Color( #colorLiteral(red: 0.5856760144, green: 0.3060674071, blue: 0.149171859, alpha: 1) ))
             }
             
         }
         .contentShape(Rectangle())
+        .onAppear{
+            print(sizeClass)
+        }
     }
 }
 

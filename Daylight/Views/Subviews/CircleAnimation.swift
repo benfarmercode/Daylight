@@ -13,6 +13,7 @@ struct CircleAnimation: View{
     @State var fill: CGFloat = 0.0
     @State var moveAlongCircle = false
     @State var animationComplete = false
+    @State var prefix = "11"
     
     @Binding var isShowing: Bool
     
@@ -58,9 +59,13 @@ struct CircleAnimation: View{
             
             if animationComplete{
                 let lastWord = viewModel.isDaytime ? "daylight" : "nighttime"
-                Text("Total \(lastWord): \(viewModel.totalTime)")
-                    .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
-                    .foregroundColor(viewModel.isDaytime ? viewModel.dayColors.text : viewModel.nightColors.text)
+                VStack{
+                    Text("Total \(lastWord):")
+                    Text(prefix + " hours " + viewModel.totalTime.suffix(2) + " minutes")
+                    //                Text(viewModel.totalTime.suffix(2)+" Minutes")
+                }
+                .font(Font.system(sizeClass == .compact ? .title3 : .largeTitle, design: .serif))
+                .foregroundColor(viewModel.isDaytime ? viewModel.dayColors.text : viewModel.nightColors.text)
             }
             
         }
@@ -68,6 +73,15 @@ struct CircleAnimation: View{
         .onTapGesture {
             withAnimation(Animation.default){
                 isShowing = false
+            }
+        }
+        .onAppear{
+            prefix = String(viewModel.totalTime.prefix(2))
+            print(prefix)
+            print(prefix.prefix(1))
+            print(prefix[0])
+            if prefix[0] == "0"{
+                prefix = String(prefix[1])
             }
         }
     }
